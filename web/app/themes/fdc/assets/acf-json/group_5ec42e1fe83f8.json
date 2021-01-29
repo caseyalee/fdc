@@ -1,0 +1,43 @@
+{
+    "key": "group_5ec42e1fe83f8",
+    "title": "Header Settings",
+    "fields": [
+        {
+            "key": "field_5ec42e4377a0a",
+            "label": "Additional Header Scripts",
+            "name": "additional_header_scripts",
+            "type": "textarea",
+            "instructions": "Include GTM or Facebook Pixel scripts (including <script> tags)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-header-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1589915317
+}

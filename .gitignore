@@ -1,0 +1,29 @@
+# Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+
+# Include any premium plugins in repo
+!web/app/plugins/advanced-custom-fields-pro/
+!web/app/plugins/gravityforms/
+
+# WordPress
+web/wp
+web/.htaccess
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor
+
+# WP-CLI
+wp-cli.local.yml
+/composer.lock

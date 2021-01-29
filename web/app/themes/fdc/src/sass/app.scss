@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+// @tailwind utilities;
+
+$c-purple: #782A88;
+$c-purple-light: #A452CB;
+$c-purple-dark: #2C0F33;
+$c-purple-darker: #1E0923;
+
+/*! purgecss start ignore */
+
+@import 'includes/fonts';
+@import 'vendor/formstone/index.scss';
+@import 'vendor/magnific-popup/index.scss';
+@import 'vendor/slick-carousel/slick.scss';
+@import 'vendor/slick-carousel/slick-theme.scss';
+
+
+body {
+    font-family: 'proxima';
+}
+
+#mobilenav {
+    @media (min-width: 1024px) {
+        display:none;
+    }
+    visibility: hidden;
+    background-color:$c-purple-dark;
+    padding: 20px;
+    &.fs-navigation-open {
+        visibility: visible;
+    }
+    #hidemenu {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #fff;
+        font-size: 10px;
+    }
+    .mobile-nav {
+        li {
+            padding: 6px 0;
+            &.menu-item-has-children {
+                padding-bottom: 0;
+            }
+            ul {
+                margin-left: 20px;
+                margin-bottom:0;
+                li {
+                    padding: 4px 0;
+                    a {
+                        font-size: 14px;
+                    }
+                }
+            }
+            a {
+                color: #fff;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+#sidemenu {
+  background-color: rgba($c-purple-darker,0.85);
+}
+
+.overlay {
+  background: rgba($c-purple-dark,0.65);
+}
+
+.button {
+  background: $c-purple;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 2px;
+  letter-spacing: 0.09rem;
+  font-size: 0.85rem;
+  text-decoration: none !important;
+  &:hover {
+    background: #fff;
+    color: $c-purple-light;
+  }
+}
+
+.prose {
+  .aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@keyframes fadeInDown {
+    0% {
+       opacity: 0;
+       transform: translateY(-20px);
+    }
+    100% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+ }
+
+ .fade-in-down {
+    animation-name: fadeInDown ease 0.5s;
+    -webkit-animation: fadeInDown ease 0.5s;
+    -moz-animation: fadeInDown ease 0.5s;
+    -o-animation: fadeInDown ease 0.5s;
+    -ms-animation: fadeInDown ease 0.5s;
+ }
+
+
+
+/*! purgecss end ignore */

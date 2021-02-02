@@ -101,6 +101,7 @@ if (mix.inProduction()) {
             'hover:bg-c-'+ colors[i] +'-lighter',
             'hover:bg-c-'+ colors[i] +'-dark',
             'hover:bg-c-'+ colors[i] +'-darker',
+            'lead',
         );
     }
 

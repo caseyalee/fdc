@@ -91,7 +91,7 @@
                         $title = $grid_item['grid_item_title'];
                         $image = $grid_item['grid_item_image'];
                         echo '<div id="modal-content-'.$i.'" class="relative bg-white w-auto mx-auto my-20 max-w-6xl mfp-hide">';
-                        echo '<img class="hidden lg:block mx-auto" src="'.$image['url'].'" alt="img"/>';
+                        // echo '<img class="hidden lg:block mx-auto" src="'.$image['url'].'" alt="img"/>';
                         echo '<div class="p-10">';
                         echo '<h4 class="text-xl lg:text-3xl text-c-purple-dark mb-8">'.$title.'</h4>';
                         echo '<div class="prose max-w-6xl">'.$content.'</div>';

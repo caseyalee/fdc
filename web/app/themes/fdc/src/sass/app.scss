@@ -63,6 +63,30 @@ body {
 
 #sidemenu {
   background-color: rgba($c-purple-darker,0.85);
+  .sidelinks {
+    a {
+      position: relative;
+      &:after {
+        content: '\f054';
+        font-size: 1.5rem;
+        font-family: 'Font Awesome 5 Pro';
+        position: absolute;
+        right: 15px;
+        top: 18px;
+      }
+    }
+  }
+}
+
+.slider {
+  .slide {
+    float: left;
+  }
+  .slick-dots {
+    @media (min-width: 1024px) {
+      padding-left: 18rem;
+    }
+  }
 }
 
 .overlay {
@@ -82,13 +106,83 @@ body {
     background: #fff;
     color: $c-purple-light;
   }
+  &.button-sm {
+    padding: 0.5rem 1rem;
+  }
+}
+
+#mainbody {
+  @media (min-width: 1024px) {
+    min-height: calc(100vh - 225px);
+  }
 }
 
 .prose {
-  .aligncenter {
+  .entry-content {
+    display: flow-root;
+  }
+  .entry-title a {
+    text-decoration: none;
+  }
+  img {
+    border-radius: 2px;
+  }
+  img.aligncenter {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+    margin: 1.5rem auto;
+  }
+  img.alignleft {
+    min-width: 100%;
+    @media (min-width: 1024px) {
+      float: left;
+      margin: 0 1.5rem 1.5rem 0;
+      min-width: auto;
+    }
+  }
+  img.alignright {
+    min-width: 100%;
+    @media (min-width: 1024px) {
+      float: right;
+      margin: 0 0 1.5rem 1.5rem;
+      min-width: auto;
+    }
+  }
+  figure.aligncenter {
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto;
+  }
+  figure.alignleft {
+    text-align: center;
+    min-width: 100%;
+    @media (min-width: 1024px) {
+      float: left;
+      margin: 0 1.5rem 1.5rem 0;
+      min-width: auto;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  figure.alignright {
+    text-align: center;
+    min-width: 100%;
+    @media (min-width: 1024px) {
+      float: right;
+      margin: 0 0 1.5rem 1.5rem;
+      min-width: auto;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  figure figcaption {
+    color: hsl(0, 0%, 60%);
   }
 }
 

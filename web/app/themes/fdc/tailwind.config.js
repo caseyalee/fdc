@@ -49,6 +49,19 @@ module.exports = {
             h4: {
               color: '#000000',
             },
+            '.lead': {
+              color: '#6e3f79',
+            },
+            '.mb-0': {
+              marginBottom: 0,
+            },
+            '.mt-0': {
+              marginTop: 0,
+            },
+            '.my-0': {
+              marginTop: 0,
+              marginBottom: 0,
+            },
             '.button': {
               color: '#FFFFFF',
               '&:hover': {

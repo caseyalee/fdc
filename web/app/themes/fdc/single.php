@@ -7,28 +7,36 @@
 <?php get_header(); ?>
 
 <?php while ( have_posts() ) : the_post() ; ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-    <div class="wrap">
-        <header class="entry-header">
-            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-        </header><!-- .entry-header -->
+<div class="spacer lg:py-12"></div>
 
-        <div class="entry-content">
-            <?php the_content(); ?>
-            <!--
-                <?php
-                    wp_link_pages( array(
-                        'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'clarity' ),
-                        'after'  => '</div>',
-                    ) );
-                ?>
-            -->
-        </div><!-- .entry-content -->
+<div class="lg:pl-80 py-6 lg:py-12" id="mainbody">
+    <div class="container">
+        <article id="post-<?php the_ID(); ?>" <?php post_class('max-w-7xl'); ?>>
 
-    </div><!-- .wrap -->
+            <header class="entry-header">
+                <?php the_title( '<h1 class="entry-title text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl mb-6 xl:mb-8 font-bold leading-none">', '</h1>' ); ?>
+            </header><!-- .entry-header -->
 
-</article><!-- #post-## -->
+            <div class="entry-meta text-sm text-gray-600 mb-4 prose max-w-7xl prose-xs">
+                <?php theme_entry_header(); ?>
+                <div class="share flex items-center lg:float-right">
+                    <?php $postlink = urlencode(get_permalink()); ?>
+                    <span class="mr-1 text-sm">Share:</span>
+                    <a style="color:#4E4990" class="mx-1 text-2xl" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $postlink; ?>"><i class="fab fa-facebook-square"></i></a>
+                    <a style="color:#0098F4" class="mx-1 text-2xl" target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo $postlink; ?>&text=<?php echo get_the_title(); ?>"><i class="fab fa-twitter-square"></i></a>
+                    <a style="color:#0067B1" class="mx-1 text-2xl" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $postlink; ?>&title=<?php echo get_the_title(); ?>"><i class="fab fa-twitter-square"></i></a>
+                </div>
+                <hr>
+            </div>
+
+            <div class="entry-content prose max-w-7xl prose-lg">
+                <?php the_content(); ?>
+            </div><!-- .entry-content -->
+
+        </article><!-- #post-## -->
+    </div>
+</div>
 <?php endwhile;?>
 
 <?php get_footer(); ?>

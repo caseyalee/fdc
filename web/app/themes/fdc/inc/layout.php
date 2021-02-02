@@ -40,7 +40,7 @@ function site_header() { ?>
 
     <div class="page-wrap">
 
-        <div id="sidemenu" class="w-64 h-screen hidden lg:inline fixed z-50 transition-all duration-300">
+        <div id="sidemenu" class="w-72 h-screen hidden lg:inline fixed z-50 transition-all duration-300">
             <a href="<?php echo get_home_url(); ?>">
                 <img class="block h-12 w-auto mt-6 mx-auto" src="<?php echo get_stylesheet_directory_uri()?>/assets/img/logo.png" alt="Faith Driven Consumer">
             </a>
@@ -54,11 +54,11 @@ function site_header() { ?>
                 <div class="text-white text-sm py-4">
                     <?php echo $sidebar_text; ?>
                 </div>
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap sidelinks">
                     <?php foreach ($sidebar_links as $slink) : ?>
-                        <a class="bg-opacity-75 hover:bg-opacity-75 bg-c-purple-dark hover:bg-c-purple border border-white border-opacity-25 py-3 mb-2 text-center w-full flex flex-wrap items-center transition-all duration-300" href="<?php echo $slink['link']['url']; ?>" target="<?php echo $slink['link']['target']; ?>">
-                            <span class="text-white text-2xl w-full flex-auto uppercase leading-none"><?php echo $slink['link']['title']; ?></span>
-                            <span class="text-white text-opacity-50 text-sm w-28 my-1 mx-auto leading-tight">
+                        <a class="relative bg-c-purple hover:bg-white text-white hover:text-c-purple py-3 px-3 mb-2 w-full transition-all duration-300" href="<?php echo $slink['link']['url']; ?>" target="<?php echo $slink['link']['target']; ?>">
+                            <span class="block text-3xl w-full flex-auto uppercase leading-none font-semibold"><?php echo $slink['link']['title']; ?></span>
+                            <span class="block text-xs my-1 leading-tight">
                                 <?php echo $slink['caption']; ?>
                             </span>
                         </a>
@@ -93,7 +93,7 @@ function site_header() { ?>
                         </svg>
                     </a>
 
-                    <div class="hidden h-20 lg:flex items-center lg:pl-72">
+                    <div class="hidden h-20 lg:flex items-center lg:pl-80">
                         <a class="button" href="/join">Join</a>
                     </div>
 
@@ -166,7 +166,7 @@ function site_footer() {
 
     ?>
 	<div id="footer" class="bg-c-purple-darker bg-opacity-85">
-        <div class="container lg:pl-72">
+        <div class="container lg:pl-80">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <div class="text-xs text-white text-opacity-50">
                     <p><?php echo get_bloginfo( $show = 'description', $filter = 'raw' ); ?></p>
@@ -179,7 +179,7 @@ function site_footer() {
             </div>
         </div>
         <div class="bg-c-purple-darker">
-            <div class="container lg:pl-72 text-xs flex justify-between text-c-purple-lighter py-3">
+            <div class="container lg:pl-80 text-xs flex justify-between text-c-purple-lighter py-3">
                 <div>&copy; <?php echo date('Y'); ?> <?php echo get_bloginfo( $show = 'name', $filter = 'raw' ); ?>. All Rights Reserved.</div>
                 <a href="#" class="hover:text-white">Privacy Policy</a>
             </div>
@@ -205,7 +205,7 @@ function content_wrapper( $phase ) {
 			$output = '</div><!-- .container -->'; // end container
 			break;
 	}
-	echo $output;
+	// echo $output;
 }
 add_action( 'theme_content_wrap', 'content_wrapper' );
 
@@ -268,8 +268,8 @@ add_action( 'social_links', 'theme_social_links' );
 
 
 function theme_entry_header() {
-    echo __('Posted on ','tele') . get_the_date();
+    echo __('Posted ','fdc') . get_the_date();
 }
 function theme_entry_footer() {
-    // echo __('Posted on ','tele') . get_the_date();
+    // echo __('Posted on ','fdc') . get_the_date();
 }

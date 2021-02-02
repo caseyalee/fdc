@@ -76,6 +76,31 @@ add_filter( 'acf/fields/wysiwyg/toolbars' , 'acf_custom_toolbars'  );
 
 
 
+function save_post_kb_shortcut() { ?>
+    <script type="text/javascript">
+    jQuery(document).keydown(function(e){
+		if((e.ctrlKey || e.metaKey) && e.which == 83){
+		       
+		        //Find #save post if it's a draft. If post is published, #save-post doesn't exist.
+		        if(jQuery('#save-post').length){
+		                jQuery('#save-post').click();       
+		        }
+		        else if(jQuery('#publish').length){
+		                jQuery('#publish').click();
+		        }
+		       
+		        //Sets a cookie to open the preview on page refresh. Saving a post auotmatically refreshes the page.
+		        document.cookie = "previewCookie = true;max-age = 60;path=/wp-admin/";         
+		        return false;                   
+		}
+		
+	});     
+    </script>
+<?php
+}
+add_action( 'admin_footer', 'save_post_kb_shortcut' );
+
+
 /*
  * Customize TinyMCE editor block_formats
  */

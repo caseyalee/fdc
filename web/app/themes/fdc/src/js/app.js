@@ -9,6 +9,7 @@ const Formstone = require('formstone');
 
 require('formstone/dist/js/navigation.js');
 require('formstone/dist/js/background.js');
+require('formstone/dist/js/equalize.js');
 
 // $.fn.isInViewport = function() {
 //     var elementTop = $(this).offset().top;
@@ -50,6 +51,8 @@ jQuery(document).ready(function($) {
         type:'inline',
         midClick: true,
     });
+
+    $('.equalize').equalize();
 
     $('.slider').slick({
         fade: true,

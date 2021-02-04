@@ -34,7 +34,7 @@ $slides = get_field('slides');
 </div>
 
 <div class="lg:pl-80 pb-6 lg:pb-12" id="mainbody">
-    <?php get_template_part( 'loops/layouts', get_post_type() ); ?>
+    <?php get_template_part( 'loops/layout_builder', get_post_type() ); ?>
 </div>
 
 <?php endwhile; ?>

@@ -35,9 +35,10 @@
 
                 // Case: Basic Content
                 elseif( get_row_layout() == 'basic_content' ):
+
                     $content = get_sub_field('content');
-                    echo '<div class="container py-6 lg:py-10 xl:py-12">';
-                    echo '<div class="prose max-w-7xl prose-lg">';
+                    echo '<div class="container py-6 lg:py-10 xl:py-12 mx-auto">';
+                    echo '<div class="prose prose-lg max-w-none lg:max-w-7xl">';
                     echo apply_filters('the_content', $content);
                     echo '</div>';
                     echo '</div>';
@@ -50,7 +51,7 @@
                     $column_one_content = get_sub_field('column_one_content');
                     $column_two_content = get_sub_field('column_two_content');
                     $vertical_alignment = get_sub_field('vertical_alignment');
-                    echo '<div class="container">';
+                    echo '<div class="container mx-auto">';
                     echo '<div class="lg:flex py-6 lg:py-10 xl:py-12 max-w-7xl" style="align-items:'.$vertical_alignment.'">';
                     echo '<div class="lg:w-1/2 pb-4">';
                     echo '<div class="prose prose-lg lg:pr-3">';
@@ -109,17 +110,27 @@
                     echo '</div>';
 
                 elseif( get_row_layout() == 'modal_image_grid' ):
+
+
                     $grid_items = get_sub_field('mig_grid_items');
-                    echo '<div class="container py-6 lg:py-10 xl:py-12">';
-                    echo '<div class="flex flex-wrap justify-between items-center content-center max-w-7xl">';
+                    echo '<div class="containers py-6 lg:py-10 xl:py-12 mx-auto lg:-ml-8">';
+                    echo '<div class="flex flex-wrap justify-center items-center content-center">';
                     $i = 0;
+
                     foreach ($grid_items as $grid_item) {
                         $i++;
                         $title = $grid_item['grid_item_title'];
                         $image = $grid_item['grid_item_image'];
+                        $is_modal = $grid_item['grid_item_is_modal'];
+                        $link = $grid_item['grid_item_link'];
+
                         if ($image) {
-                        echo '<div class="mx-2 py-24 px-36 relative flex justify-center border">';
-                        echo '<a href="#modal-content-'.$i.'" class="modal absolute top-0 left-0 w-full h-full bg-c-purple bg-opacity-50 hover:bg-opacity-75 transition-all duration-200 font-semibold text-xl lg:text-3xl z-20 flex justify-center items-center text-white">'.$title.'</a>';
+                        echo '<div class="py-28 xl:py-32 relative flex justify-center border w-1/2 lg:w-1/4">';
+                        if ($is_modal) {
+                            echo '<a href="#modal-content-'.$i.'" class="modal absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-200 font-semibold text-xl z-20 flex justify-center items-center text-white"><span class="leading-none text-c-purple bg-white px-8 py-3">'.$title.' <i class="fas fa-angle-right"></i></span></a>';
+                        } else {
+                            echo '<a href="'.$link['url'].'" target="'.$link['target'].'" class="modal absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-200 font-semibold text-xl z-20 flex justify-center items-center text-white"><span class="leading-none text-c-purple bg-white px-8 py-3">'.$title.' <i class="fas fa-angle-right"></i></span></a>';
+                        }
                         echo '<img class="absolute object-cover top-0 left-0 w-full h-full" src="'.$image['sizes']['medium'].'" alt="'.$title.'">';
                         echo '</div>';
                         // echo '<div class="p-6">';

@@ -248,7 +248,7 @@
                 "layout_60124bac2bd42": {
                     "key": "layout_60124bac2bd42",
                     "name": "modal_image_grid",
-                    "label": "Modal Image Grid",
+                    "label": "Image Link Grid",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -314,13 +314,67 @@
                                     "mime_types": ""
                                 },
                                 {
+                                    "key": "field_601b9dd6d378f",
+                                    "label": "Link Type",
+                                    "name": "grid_item_is_modal",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "",
+                                    "default_value": 1,
+                                    "ui": 1,
+                                    "ui_on_text": "Modal",
+                                    "ui_off_text": "Link"
+                                },
+                                {
+                                    "key": "field_601b9dc2d378e",
+                                    "label": "Link",
+                                    "name": "grid_item_link",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_601b9dd6d378f",
+                                                "operator": "!=",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
                                     "key": "field_60124c152bd46",
                                     "label": "Modal Content",
                                     "name": "grid_item_content",
                                     "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_601b9dd6d378f",
+                                                "operator": "==",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -525,5 +579,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1612297674
+    "modified": 1612422879
 }

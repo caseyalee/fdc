@@ -128,7 +128,9 @@ function site_footer() {
     $member_benefits_image = get_field('mb_image','option');
 
     if( $member_benefits_image ) {
-        echo '<div id="member-benefits-modal" class="relative bg-white w-auto mx-auto my-20 max-w-4xl mfp-hide">';
+        echo '<div id="member-benefits-modal" class="relative bg-white mx-auto my-20 max-w-4xl text-center mfp-hide">';
+        echo '<span class="text-4xl text-c-purple text-center block"><i class="fal fa-users"></i></span>';
+        echo '<h4 class="font-semibold text-xl lg:text-5xl tracking-tight uppercase text-center text-c-purple">Member Benefits</h4>';
         echo '<img class="block mx-auto" src="'.$member_benefits_image['sizes']['large'].'" alt="img"/>';
         echo '</div>';
     }

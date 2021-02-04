@@ -61,6 +61,47 @@ endif; // theme_setup
 add_action( 'after_setup_theme', 'theme_setup' );
 
 
+/**
+ * Admin Color Scheme
+ */
+function fdc_admin_colors() {
+  wp_admin_css_color(
+    'flat',
+    'Flat',
+    get_stylesheet_directory_uri().'/assets/css/admin-style.css',
+    array( '#2A3340', '#35404F', '#E5442C', '#086584' ),
+    array(
+      'base' => '#f1f2f3',
+      'focus' => '#fff',
+      'current' => '#fff',
+    )
+  );
+}
+add_action( 'admin_init', 'fdc_admin_colors' );
+
+
+
+/**
+ * Automatically Set Color Scheme
+ * @param  $user_id
+ * @return wp_update_user()
+ */
+function fdc_set_default_admin_color($user_id) {
+    $args = array(
+        'ID' => $user_id,
+        'admin_color' => 'flat'
+    );
+    wp_update_user( $args );
+}
+add_action('user_register', 'fdc_set_default_admin_color');
+
+
+/**
+ * Don't Allow Color Scheme Change
+ */
+remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+
+
     if (function_exists('acf_add_options_page')) {
         acf_add_options_page(
             [

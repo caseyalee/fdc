@@ -1,0 +1,39 @@
+$base-color: #34404E;
+$highlight-color: #687d96;
+$notification-color: #d35401;
+
+$link: #0B69A3;
+$button-color: #E5432B;
+$button-text-color: #ffe7e1;
+
+$menu-text: #e4edf6;
+$menu-icon: #76808d;
+$menu-submenu-focus-text: #FFFFFF;
+
+$menu-highlight-text: #FFFFFF;
+$menu-highlight-background: #E5432B;
+
+@import "./includes/admin";
+
+.acf-fields>.acf-field.acf-field-group {
+    border-top: 4px solid $base-color;
+}
+.acf-field-group > .acf-label label {
+    font-size: 18px;
+    color: $base-color;
+}
+.acf-field-group > .acf-label label:before {
+    content: "Section: ";
+    color: #a7a5a5;
+    font-weight: normal;
+}
+// Hide Nags
+#wp-admin-bar-comments,#wp-admin-bar-customize,#wp-admin-bar-wp-logo,#wp-admin-bar-site-name-default,#ws-pro-version-notice,.yoast_premium_upsell,.yoast-sidebar,#yoast-helpscout-beacon,#wpseo-local-seo-upsell {display:none;}
+.wpseo_content_cell {display:block;}
+
+.php-error #adminmenuback, .php-error #adminmenuwrap {
+    margin-top: 0 !important;
+}
+
+a .wp-menu-image.svg {opacity: 0.5;}
+a:hover .wp-menu-image.svg {opacity: 1.0;}

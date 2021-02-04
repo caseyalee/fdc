@@ -111,7 +111,7 @@ if (mix.inProduction()) {
       extend: {
         content: [
             './*.php',
-            './inc/layout.php',
+            './inc/layout_builder.php',
             './inc/TailwindsCSS_Menu_Walker.php',
             './page-templates/*.php',
             './loops/layouts.php',

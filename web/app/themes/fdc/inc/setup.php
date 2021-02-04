@@ -76,6 +76,7 @@ function fdc_admin_colors() {
       'current' => '#fff',
     )
   );
+  add_editor_style( 'editor-style.css' );
 }
 add_action( 'admin_init', 'fdc_admin_colors' );
 

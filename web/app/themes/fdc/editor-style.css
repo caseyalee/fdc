@@ -6,7 +6,7 @@ body {
 .font-semibold  {font-weight: 600;}
 .font-bold {font-weight: bold;}
 
-.text-c-purple {color:#782A88;}
+.text-c-purple {color:#782A88 !important;}
 .text-center {text-align: center;}
 .italic {font-style: italic;}
 

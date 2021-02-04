@@ -125,6 +125,9 @@ body {
 }
 
 .prose {
+  .text-c-purple {
+    color: $c-purple !important;
+  }
   .entry-content {
     display: flow-root;
   }

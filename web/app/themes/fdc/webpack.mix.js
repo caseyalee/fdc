@@ -73,6 +73,7 @@ if (mix.inProduction()) {
         "blockquote",
         "ul",
         "btn",
+        "italic",
     ];
     for (var i = 0; i < colors.length; i++) {
         WhiteListClasses.push(

@@ -13,6 +13,7 @@
                         $tmp = '<div class="bg-c-purple-dark text-white py-8 lg:py-12 my-6 lg:-ml-8 lg:my-12 shadow-lg">';
                         $tmp = '<div class="bg-c-purple text-white py-8 lg:py-12 my-6 lg:-ml-8 lg:my-12 shadow-lg">';
                         $tmp = '<div class="bg-black text-white py-8 lg:py-12 my-6 lg:-ml-8 lg:my-12 shadow-lg">';
+                        $tmp = '<img class="rounded-md">';
                         ?>
                         <div class="<?php echo $bg_color; ?> text-white py-8 lg:py-12 lg:-ml-8 shadow-lg">
                             <div class="container lg:flex justify-around max-w-screen-2xl 4xl:max-w-screen-4xl">
@@ -64,14 +65,15 @@
                     $column_one_content = get_sub_field('column_one_content');
                     $column_two_content = get_sub_field('column_two_content');
                     $vertical_alignment = get_sub_field('vertical_alignment');
+
                     echo '<div class="container mx-auto">';
                     echo '<div class="lg:flex py-6 lg:py-10 xl:py-12 max-w-7xl" style="align-items:'.$vertical_alignment.'">';
-                    echo '<div class="lg:w-1/2 pb-4">';
+                    echo '<div class="lg:w-1/2 pb-4 lg:p-4">';
                     echo '<div class="prose prose-lg lg:pr-3">';
                     echo apply_filters('the_content', $column_one_content);
                     echo '</div>';
                     echo '</div>';
-                    echo '<div class="lg:w-1/2 pb-4">';
+                    echo '<div class="lg:w-1/2 pb-4 lg:p-4">';
                     echo '<div class="prose prose-lg lg:pl-3">';
                     echo apply_filters('the_content', $column_two_content);
                     echo '</div>';

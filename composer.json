@@ -41,8 +41,7 @@
     "wpackagist-plugin/wordpress-seo":"15.7",
     "wpackagist-plugin/classic-editor":"^1.5.0",
     "wpackagist-plugin/admin-menu-editor":"1.9.8",
-    "wpackagist-plugin/intuitive-custom-post-order":"3.1.2.1",
-    "wpackagist-plugin/stripe-payments":"2.0.43"
+    "wpackagist-plugin/intuitive-custom-post-order":"3.1.2.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.4",

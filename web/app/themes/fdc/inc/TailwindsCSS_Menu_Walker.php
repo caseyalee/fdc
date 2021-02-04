@@ -15,7 +15,7 @@ class TailwindsCSS_Menu_Walker extends Walker_Nav_Menu {
             $output .= "<li class='" .  $active_class . "'>";
         }
 
-        $output .= '<a class="font-light uppercase text-xs xl:text-sm tracking-wider text-white hover:text-c-purple-lighter transition duration-150 ease-in-out py-3 '.$modal_class.'" href="' . $item->url . '">';
+        $output .= '<a target="'.$item->target.'" class="font-light uppercase text-xs xl:text-sm tracking-wider text-white hover:text-c-purple-lighter transition duration-150 ease-in-out py-3 '.$modal_class.'" href="' . $item->url . '">';
         // if ($item->url && $item->url != '#') {
         //     $output .= '<a class="font-light uppercase text-white hover:text-c-purple-light transition duration-150 ease-in-out py-3" href="' . $item->url . '">';
         // } else {

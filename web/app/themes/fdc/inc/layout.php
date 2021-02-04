@@ -126,43 +126,12 @@ function site_footer() {
 
     // Member Benefits
     $member_benefits_image = get_field('mb_image','option');
-    $member_benefits = get_field('mb_benefits','option');
 
-    if( have_rows('mb_benefits','option') ):
-        echo '<div id="member-benefits-modal" class="flex items-center justify-center relative bg-white w-auto mx-auto my-20 max-w-6xl mfp-hide">';
-
-            echo '<div class="hidden lg:block lg:w-1/2 text-center">';
-            echo '<img class="block mx-auto" src="'.$member_benefits_image['sizes']['large'].'" alt="img"/>';
-            echo '</div>';
-
-            echo '<div class="w-100 lg:w-1/2 py-24 lg:py-0">';
-            echo '<span class="text-4xl text-c-purple text-center block"><i class="fal fa-users"></i></span>';
-            echo '<h4 class="font-semibold text-xl lg:text-5xl tracking-tight uppercase text-center text-c-purple">Member Benefits</h4>';
-            echo '<div class="flex flex-wrap items-center justify-center">';
-            while( have_rows('mb_benefits','option') ) : the_row() ;
-
-                $benefit_heading = get_sub_field('benefit_heading');
-                $benefit_text = get_sub_field('benefit_text');
-             ?>
-             <div class="w-1/2 text-center p-4">
-                 <h4 class="font-semibold text-2xl">
-                    <?php echo $benefit_heading; ?>
-                </h4>
-                 <div class="text-lg leading-tight">
-                     <?php echo $benefit_text; ?>
-                 </div>
-             </div>
-
-            <?php endwhile;
-
+    if( $member_benefits_image ) {
+        echo '<div id="member-benefits-modal" class="relative bg-white w-auto mx-auto my-20 max-w-4xl mfp-hide">';
+        echo '<img class="block mx-auto" src="'.$member_benefits_image['sizes']['large'].'" alt="img"/>';
         echo '</div>';
-        echo '</div>';
-        echo '</div>';
-
-    // No value.
-    else :
-        // Do something...
-    endif;
+    }
 
     ?>
 	<div id="footer" class="bg-c-purple-darker bg-opacity-85">

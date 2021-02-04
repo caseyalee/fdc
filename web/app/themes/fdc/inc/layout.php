@@ -129,11 +129,11 @@ function site_footer() {
     $member_benefits_button = get_field('mb_button','option');
 
     if( $member_benefits_image ) {
-        echo '<div id="member-benefits-modal" class="relative bg-white mx-auto my-20 max-w-4xl py-5 px-5 text-center mfp-hide">';
+        echo '<div id="member-benefits-modal" class="relative bg-white mx-auto mt-10 max-w-4xl p-8 lg:p-20 text-center mfp-hide">';
         echo '<h4 class="font-semibold text-xl lg:text-5xl tracking-tight uppercase text-center text-c-purple">Member Benefits</h4>';
-        echo '<img class="block mx-auto" src="'.$member_benefits_image['sizes']['large'].'" alt="img"/>';
+        echo '<img class="mx-auto w-full h-auto" src="'.$member_benefits_image['sizes']['large'].'" alt="img"/>';
         if (!empty($member_benefits_button)) {
-            echo '<a class="button text-lg mx-auto bg-c-purple text-white hover:bg-c-purple-light hover:text-white" href="'.$member_benefits_button['url'].'" target="'.$member_benefits_button['target'].'" tabindex="0">'.$member_benefits_button['title'].' <i class="fas fa-angle-right"></i></a>';
+            echo '<br><a class="button text-lg mx-auto bg-c-purple text-white hover:bg-c-purple-light hover:text-white" href="'.$member_benefits_button['url'].'" target="'.$member_benefits_button['target'].'" tabindex="0">'.$member_benefits_button['title'].' <i class="fas fa-angle-right"></i></a>';
         }
         echo '</div>';
     }

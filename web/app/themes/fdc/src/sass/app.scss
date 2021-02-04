@@ -117,6 +117,13 @@ body {
   }
 }
 
+.container.offset-top-container {
+  @media (min-width: 1024px) {
+    border-top: 8px solid #782b87;
+    box-shadow: -2px -40px 40px rgba(#000,0.10);
+  }
+}
+
 .prose {
   .entry-content {
     display: flow-root;

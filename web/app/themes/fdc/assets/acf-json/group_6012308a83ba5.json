@@ -45,6 +45,35 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_601c4e9486e37": {
+                    "key": "layout_601c4e9486e37",
+                    "name": "offset_basic_content",
+                    "label": "Offset Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_601c4e9486e38",
+                            "label": "Content",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
                 "layout_6012321d45b1a": {
                     "key": "layout_6012321d45b1a",
                     "name": "two_column_content",
@@ -579,5 +608,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1612422879
+    "modified": 1612467892
 }

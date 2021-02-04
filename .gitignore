@@ -29,3 +29,4 @@ sync
 # WP-CLI
 wp-cli.local.yml
 /composer.lock
+/FDC Droplet.md

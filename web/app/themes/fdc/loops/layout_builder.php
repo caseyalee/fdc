@@ -5,6 +5,8 @@
             // Loop through rows.
             while ( have_rows('layouts') ) : the_row();
 
+
+
                 if( get_row_layout() == 'stats_banner' ):
                     $bg_color = get_sub_field('stat_bar_color') ? get_sub_field('stat_bar_color') : 'bg-c-purple';
                     if (have_rows('quick_stats')) :
@@ -32,6 +34,17 @@
                         </div>
 
                     <?php endif;
+
+
+                elseif( get_row_layout() == 'offset_basic_content' ):
+
+                    $content = get_sub_field('content');
+                    echo '<div class="container offset-top-container lg:relative lg:-mt-20 max-w-7xl ml-0 bg-white z-20 px-10 py-8">';
+                    echo '<div class="prose prose-lg max-w-none lg:max-w-7xl">';
+                    echo apply_filters('the_content', $content);
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="clear-both"></div>';
 
                 // Case: Basic Content
                 elseif( get_row_layout() == 'basic_content' ):

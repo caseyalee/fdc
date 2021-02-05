@@ -10,7 +10,7 @@ class TailwindsCSS_Menu_Walker extends Walker_Nav_Menu {
 
         $tmp = '<li class="px-6 btn">';
         if ($top_level) {
-            $output .= "<li class='px-4 xl:px-8 " .  $active_class .' '.  $btn_class . "'>";
+            $output .= "<li class='whitespace-no-wrap px-4 xl:px-8 " .  $active_class .' '.  $btn_class . "'>";
         } else {
             $output .= "<li class='" .  $active_class . "'>";
         }

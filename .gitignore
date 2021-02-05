@@ -10,6 +10,7 @@ web/app/uploads/*
 !web/app/plugins/gravityforms/
 !web/app/plugins/gravityformsstripe/
 !web/app/plugins/gravityformsuserregistration/
+!web/app/plugins/simplecast/
 
 # WordPress
 web/wp

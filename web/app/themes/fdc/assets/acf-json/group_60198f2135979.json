@@ -29,6 +29,13 @@
                 "operator": "==",
                 "value": "post"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "podcast"
+            }
         ]
     ],
     "menu_order": 0,
@@ -47,5 +54,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1612287888
+    "modified": 1612511596
 }

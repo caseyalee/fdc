@@ -10,7 +10,7 @@ $slides = get_field('slides');
     <?php
     foreach ($slides as $slide) :
         $image = $slide['slide_image'];
-        $slide_image_src = wp_get_attachment_image_src( $image['ID'], 'full' );
+        $slide_image_src = wp_get_attachment_image_src( $image['ID'], 'page-header' );
         $button = $slide['slide_button'];
         $slide_text = $slide['slide_text'];
         $slide_title = $slide['slide_title'];

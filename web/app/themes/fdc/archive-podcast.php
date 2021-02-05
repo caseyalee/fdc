@@ -34,7 +34,7 @@
 
                         <?php
                         if (has_post_thumbnail( $post )) {
-                            echo get_the_post_thumbnail( $post, 'large',['class'=>'mb-0']);
+                            echo get_the_post_thumbnail( $post, 'large',['class'=>'mb-0 w-full h-auto']);
                         }
                         ?>
 

@@ -9,5 +9,12 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php
+    if (defined('WP_ENV')) {
+        if (WP_ENV === 'staging') {
+            echo '<div style="z-index:999999;position:fixed;top:0;right:0;width:250px;background-color:red;padding:5px 10px;color:white;text-align:center;">ENV:STAGING</div>';
+        }
+    }
+?>
 
 <?php do_action( 'theme_header' ); ?>

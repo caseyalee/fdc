@@ -8,6 +8,8 @@ web/app/uploads/*
 # Include any premium plugins in repo
 !web/app/plugins/advanced-custom-fields-pro/
 !web/app/plugins/gravityforms/
+!web/app/plugins/gravityformsstripe/
+!web/app/plugins/gravityformsuserregistration/
 
 # WordPress
 web/wp

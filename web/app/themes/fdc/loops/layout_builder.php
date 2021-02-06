@@ -16,7 +16,7 @@
                         $tmp = '<img class="rounded-md">';
                         ?>
                         <div class="<?php echo $bg_color; ?> text-white py-8 lg:py-12 lg:-ml-8 shadow-lg">
-                            <div class="container lg:flex justify-around max-w-screen-2xl 4xl:max-w-screen-4xl">
+                            <div class="container lg:flex justify-around max-w-screen-2xl">
                                 <?php while (have_rows('quick_stats')) :
                                     the_row();
                                     $stat_icon = get_sub_field('stat_icon');
@@ -40,7 +40,7 @@
                 elseif( get_row_layout() == 'offset_basic_content' ):
 
                     $content = get_sub_field('content');
-                    echo '<div class="container offset-top-container lg:relative lg:-mt-20 max-w-7xl ml-0 bg-white z-20 px-10 py-8">';
+                    echo '<div class="container offset-top-container lg:relative lg:-mt-20 max-w-7xl ml-0 bg-white z-10 px-10 py-8">';
                     echo '<div class="prose prose-lg max-w-none lg:max-w-7xl">';
                     echo apply_filters('the_content', $content);
                     echo '</div>';

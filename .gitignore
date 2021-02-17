@@ -33,3 +33,6 @@ sync
 wp-cli.local.yml
 /composer.lock
 /FDC Droplet.md
+.idea
+*.sublime-project
+*.sublime-workspace

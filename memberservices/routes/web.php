@@ -7,6 +7,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Checkout\CheckoutController;
+use App\Http\Controllers\Dashboard\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,31 +31,16 @@ Route::get('/checkout', function () {
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['auth'])->name('checkout');
 Route::get('/checkout-complete', [CheckoutController::class, 'checkoutComplete'])->middleware(['auth'])->name('checkout-complete');
 
-Route::get('/dashboard', function () {
-    $user = auth()->user();
-    $subs = $user->subscriptions;
-    // dd($user->full_name);
-    // $stripeCustomer = $user->createOrGetStripeCustomer();
-    // $stripeCustomer = $user->updateStripeCustomer(['name'=>$user->full_name,'description'=>'Web Member ID: '.$user->id.'']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-    // $user->assignRole('admin');
-    // $stripeCustomer = $user->createOrGetStripeCustomer();
-    // dd($stripeCustomer);
+Route::get('/cancel', [CheckoutController::class, 'cancelSubscription'])->middleware(['auth'])->name('cancel');
+Route::get('/renew', function () {
+    return view('renew');
+})->name('renew');
 
-    // $role = Role::create(['name' => 'admin']);
-    // $role = Role::find(1);;
-    // $permission = Permission::create(['name' => 'edit members']);
-    // $role->givePermissionTo($permission);
-    // $permission->assignRole($role);
-
-    // $user->assignRole($role);
-    // dd($user->hasRole('admin'));
-    return view('dashboard')->with('subscriptions',$subs);
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/billing-portal', function (Request $request) {
+Route::get('/billing', function (Request $request) {
     // $url = $request->user()->billingPortalUrl(route('dashboard'));
     return $request->user()->redirectToBillingPortal(route('dashboard'));
-});
+})->name('billing');
 
 require __DIR__.'/auth.php';

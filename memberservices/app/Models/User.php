@@ -50,6 +50,12 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     }
 
+    public function getCVTAttribute()
+    {
+        $cvtdata =  env('ACC_ORG_ID').'-'.env('ACC_PROG_ID').'-'.'FDC_USER_ID'.$this->id;
+        return sha1($cvtdata);
+    }
+
 
 
 }

@@ -11,7 +11,7 @@
 <div class="spacer lg:py-12"></div>
 
 <div class="lg:pl-80 py-6 lg:py-12" id="mainbody">
-    <div class="container">
+    <div class="container max-w-6xl mx-auto">
         <article id="post-<?php the_ID(); ?>" <?php post_class('max-w-7xl'); ?>>
 
             <header class="entry-header">

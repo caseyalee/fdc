@@ -22,7 +22,7 @@
     <div class="container max-w-screen-3xl">
 
         <?php if ( have_posts() ) : ?>
-            <div class="lg:flex equalize" data-equalize-options='{"target":".entry-title"}'>
+            <div class="lg:flex flex-wrap equalize" data-equalize-options='{"target":".entry-title"}'>
         	<?php while ( have_posts() ) : the_post(); ?>
                 <div class="lg:w-1/2 lg:px-6">
             		<?php do_action( 'theme_before_entry' ); ?>
@@ -34,9 +34,10 @@
 
                         <?php
                         if (has_post_thumbnail( $post )) {
-                            echo get_the_post_thumbnail( $post, 'archive-post-thumb',['class'=>'mb-0 w-full h-auto']);
+                            echo get_the_post_thumbnail( $post, 'large',['class'=>'mb-0 w-full h-auto']);
                         }
                         ?>
+
 
                         <div class="entry-meta text-sm text-gray-600 py-2">
                             <?php theme_entry_header(); ?>

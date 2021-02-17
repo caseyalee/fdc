@@ -49,10 +49,10 @@ class DashboardController extends Controller
         // ])->get( env('ACC_ENDPOINT_URL') . 'file/valid_members_csv/3524' );
         // return var_dump($response->body());
 
-        $cvtdata =  env('ACC_ORG_ID').'-'.env('ACC_PROG_ID').'-'.'fdc_user_id5';
-        $cvt = sha1($cvtdata);
+        // $cvtdata =  env('ACC_ORG_ID').'-'.env('ACC_PROG_ID').'-'.'fdc_user_id5';
+        // $cvt = sha1($cvtdata);
+        // dd($cvt);
         // 681ff764643f2649233c21cdf6cce3b3a13753f7
-        dd($cvt);
 
 
         $user = auth()->user();

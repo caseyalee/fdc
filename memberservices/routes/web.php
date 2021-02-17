@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Checkout\CheckoutController;
 use App\Http\Controllers\Dashboard\DashboardController;
-
+use App\Http\Controllers\Mail\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/register');
 });
 
 Route::get('/checkout', function () {
@@ -42,5 +42,8 @@ Route::get('/billing', function (Request $request) {
     // $url = $request->user()->billingPortalUrl(route('dashboard'));
     return $request->user()->redirectToBillingPortal(route('dashboard'));
 })->name('billing');
+
+Route::get('/testmail', [SendEmailController::class, 'send'])->name('testmail');
+
 
 require __DIR__.'/auth.php';

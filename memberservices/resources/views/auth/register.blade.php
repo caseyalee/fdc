@@ -6,7 +6,7 @@
             </a>
         </x-slot>
 
-        <h2 class="font-bold text-xl mb-6 text-center">Create an account to being accessing the FDC Marketplace today!</h2>
+        <h2 class="font-bold text-xl mb-6 text-center">Create an account to begin accessing the FDC Marketplace today!</h2>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />

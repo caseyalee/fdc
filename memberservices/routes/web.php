@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Checkout\CheckoutController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\EmailContentController;
 use App\Http\Controllers\Mail\SendEmailController;
 
 /*
@@ -25,25 +26,34 @@ Route::get('/', function () {
     return redirect('/register');
 });
 
-Route::get('/checkout', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+
+    Route::get('/cancel', [CheckoutController::class, 'cancelSubscription'])->name('cancel');
+
+    Route::get('/renew', function () {
+        return view('renew');
+    })->name('renew');
+
+    Route::get('/billing', function (Request $request) {
+        // $url = $request->user()->billingPortalUrl(route('dashboard'));
+        return $request->user()->redirectToBillingPortal(route('dashboard'));
+    })->name('billing');
+
 });
-Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware(['auth'])->name('checkout');
-Route::get('/checkout-complete', [CheckoutController::class, 'checkoutComplete'])->middleware(['auth'])->name('checkout-complete');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// Route::get('/testmail', [SendEmailController::class, 'send'])->name('testmail');
+// Route::get('/testmail-preview', [SendEmailController::class, 'preview'])->name('testmail-preview');
 
-Route::get('/cancel', [CheckoutController::class, 'cancelSubscription'])->middleware(['auth'])->name('cancel');
-Route::get('/renew', function () {
-    return view('renew');
-})->name('renew');
-
-Route::get('/billing', function (Request $request) {
-    // $url = $request->user()->billingPortalUrl(route('dashboard'));
-    return $request->user()->redirectToBillingPortal(route('dashboard'));
-})->name('billing');
-
-Route::get('/testmail', [SendEmailController::class, 'send'])->name('testmail');
-
+Route::prefix('admin')->middleware(['role:admin'])->group(function () {
+    Route::get('/', [EmailContentController::class, 'index'])->name('admin');
+    Route::get('/emails', [EmailContentController::class, 'index'])->name('admin-emails');
+    Route::get('/emails/edit/{email}', [EmailContentController::class, 'edit'])->name('admin-emails-edit');
+    Route::post('/emails/update/{email}', [EmailContentController::class, 'update'])->name('admin-emails-update');
+    Route::get('/emails/preview/{email}', [EmailContentController::class, 'preview'])->name('admin-email-preview');
+});
 
 require __DIR__.'/auth.php';

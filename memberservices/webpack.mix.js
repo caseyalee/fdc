@@ -11,7 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
+
 mix.setPublicPath('../web/members/');
+
 mix.js('resources/js/app.js', 'assets/js').postCss('resources/css/app.css', 'assets/css', [
     require('postcss-import'),
     require('tailwindcss'),

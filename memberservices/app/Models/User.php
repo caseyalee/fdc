@@ -56,6 +56,11 @@ class User extends Authenticatable
         return sha1($cvtdata);
     }
 
+    public function getAccessMemberIdAttribute()
+    {
+        return 'fdc_user_id'.$this->id;
+    }
+
 
 
 }

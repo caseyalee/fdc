@@ -36,7 +36,7 @@
                                 @if($user->subscribed())
                                     <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Marketplace</th>
                                 @endif
-                                @if($subscription->onTrial() && $subscription->trial_ends_at)
+                                @if(($subscription->onTrial() && $subscription->trial_ends_at) || $subscription->ends_at)
                                 <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Valid Through</th>
                                 @endif
                                 <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Status</th>
@@ -59,11 +59,15 @@
                                         </span>
                                     </td>
                                 @endif
-                                @if($subscription->onTrial() && $subscription->trial_ends_at)
+                                @if(($subscription->onTrial() && $subscription->trial_ends_at) || $subscription->ends_at)
                                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                     <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Valid Through</span>
                                     <span class="text-sm">
-                                    {{ $subscription->trial_ends_at->toFormattedDateString() }}
+                                        @if($subscription->trial_ends_at)
+                                            {{ $subscription->trial_ends_at->toFormattedDateString() }}
+                                        @elseif($subscription->ends_at)
+                                            {{ $subscription->ends_at->toFormattedDateString() }}
+                                        @endif
                                     </span>
                                 </td>
                                 @endif

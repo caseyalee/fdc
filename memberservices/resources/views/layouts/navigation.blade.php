@@ -19,9 +19,12 @@
                         {{ __('FDC Home') }}
                     </x-nav-link>
                     @role('admin')
-{{--                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">--}}
-{{--                        {{ __('Manage') }}--}}
-{{--                    </x-nav-link>--}}
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('admin*')">
+                        <x-slot name="name">Admin</x-slot>
+                        <x-slot name="children">
+                            <a href="{{route('admin-emails')}}">Manage Emails</a>
+                        </x-slot>
+                    </x-nav-link-parent>
                     @endrole
                 </div>
             </div>
@@ -29,6 +32,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
+
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->first_name }}</div>
@@ -42,9 +46,8 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form class="m-0" method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

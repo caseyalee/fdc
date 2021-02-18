@@ -50,7 +50,7 @@ class WebhookHandledListener
             if ($customer_id) {
                 $user = Cashier::findBillable($customer_id);
                 $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->first();
-                Mail::to($user)->send(new UserSubscribed($user,$email));
+                Mail::to($user)->later(now()->addMinutes(3), new UserSubscribed($user,$email));
                 // Log::info(var_export($event->payload, true));
             }
         }

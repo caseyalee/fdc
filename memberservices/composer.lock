@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0197ea62a7efde9cc33cbe0b6bffbbe5",
+    "content-hash": "ddac5dfb115a2f3c8504e6b18676c827",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -908,6 +908,56 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "emtiazzahid/git-log-laravel",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emtiazzahid/git-log-laravel.git",
+                "reference": "0e906b7aa3b6e2b9fdac0967ab3985b3f4da3b71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emtiazzahid/git-log-laravel/zipball/0e906b7aa3b6e2b9fdac0967ab3985b3f4da3b71",
+                "reference": "0e906b7aa3b6e2b9fdac0967ab3985b3f4da3b71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EmtiazZahid\\GitLogLaravel\\GitLogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/controllers"
+                ],
+                "psr-0": {
+                    "EmtiazZahid\\GitLogLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Md. Emtiaz Zahid",
+                    "email": "emtiazzahid@gmail.com"
+                }
+            ],
+            "description": "Git Log for Laravel",
+            "support": {
+                "issues": "https://github.com/emtiazzahid/git-log-laravel/issues",
+                "source": "https://github.com/emtiazzahid/git-log-laravel/tree/0.1.0"
+            },
+            "time": "2020-01-23T06:43:52+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -3185,16 +3235,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.73.0",
+            "version": "v7.74.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "15d9e4b5c1076499e9681e7a6801c6945d6d530c"
+                "reference": "e45b12ff0b47746b646f51c8249210303fb076f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/15d9e4b5c1076499e9681e7a6801c6945d6d530c",
-                "reference": "15d9e4b5c1076499e9681e7a6801c6945d6d530c",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e45b12ff0b47746b646f51c8249210303fb076f5",
+                "reference": "e45b12ff0b47746b646f51c8249210303fb076f5",
                 "shasum": ""
             },
             "require": {
@@ -3240,9 +3290,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.73.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v7.74.0"
             },
-            "time": "2021-02-17T01:42:32+00:00"
+            "time": "2021-02-18T00:17:33+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6367,16 +6417,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.0.4",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "de0cbf49b50c22aaf047dcaba8c83827164ff668"
+                "reference": "cf91d78e154fd274273926d6773ed6750f7c2c2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/de0cbf49b50c22aaf047dcaba8c83827164ff668",
-                "reference": "de0cbf49b50c22aaf047dcaba8c83827164ff668",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/cf91d78e154fd274273926d6773ed6750f7c2c2c",
+                "reference": "cf91d78e154fd274273926d6773ed6750f7c2c2c",
                 "shasum": ""
             },
             "require": {
@@ -6419,7 +6469,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2021-02-16T18:37:09+00:00"
+            "time": "2021-02-18T15:47:31+00:00"
         },
         {
             "name": "laravel/sail",

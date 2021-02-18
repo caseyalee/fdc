@@ -14,7 +14,6 @@ class CheckoutController extends Controller
         $user = auth()->user();
         $type = $request->get('membership');
 
-
         if ($type == 'annual') {
 
             $product_key = env('STRIPE_ANNUAL_SUB');
@@ -37,7 +36,7 @@ class CheckoutController extends Controller
             $checkout = $user->newSubscription('default', $product_key )->trialDays(7)->checkout(
                 [
                     'success_url' => route('dashboard'),
-                    'cancel_url' => route('checkout'),
+                    'cancel_url' => route('dashboard'),
                 ]
             );
 
@@ -46,7 +45,7 @@ class CheckoutController extends Controller
             $checkout = $user->newSubscription('default', $product_key )->checkout(
                 [
                     'success_url' => route('dashboard'),
-                    'cancel_url' => route('checkout'),
+                    'cancel_url' => route('dashboard'),
                 ]
             );
 

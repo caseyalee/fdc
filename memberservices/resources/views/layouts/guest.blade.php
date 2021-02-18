@@ -6,6 +6,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" href="https://faithdrivenconsumer.com/app/uploads/2021/02/cropped-favicon-1-192x192.jpg" sizes="192x192" />
+        <link rel="apple-touch-icon" href="https://faithdrivenconsumer.com/app/uploads/2021/02/cropped-favicon-1-180x180.jpg" />
+        <meta name="msapplication-TileImage" content="https://faithdrivenconsumer.com/app/uploads/2021/02/cropped-favicon-1-270x270.jpg" />
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">

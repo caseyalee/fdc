@@ -43,8 +43,6 @@
                 function checkTimeout() {
                     counter++;
                     var now = new Date();
-                    var minutes = now.getMinutes();
-                    console.log(counter);
                     if (counter >= 120) {
                       window.location.href = '{{env('APP_URL')}}' + '/dashboard';
                     }

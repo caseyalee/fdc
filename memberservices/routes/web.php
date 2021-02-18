@@ -52,6 +52,7 @@ Route::prefix('admin')->middleware(['role:admin'])->group(function () {
     Route::get('/emails/edit/{email}', [EmailContentController::class, 'edit'])->name('admin-emails-edit');
     Route::post('/emails/update/{email}', [EmailContentController::class, 'update'])->name('admin-emails-update');
     Route::get('/emails/preview/{email}', [EmailContentController::class, 'preview'])->name('admin-email-preview');
+    Route::get('/changelog', '\EmtiazZahid\GitLogLaravel\GitLogLaravelController@index');
 });
 
 require __DIR__.'/auth.php';

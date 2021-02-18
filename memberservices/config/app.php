@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Emtiazzahid\GitLogLaravel\GitLogServiceProvider::class,
 
         /*
          * Application Service Providers...

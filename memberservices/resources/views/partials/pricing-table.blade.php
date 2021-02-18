@@ -66,7 +66,7 @@
                             </ul>
                         </div>
                         <div class="block flex items-center p-8">
-                            <a class="text-center mt-3 text-lg font-semibold bg-purple-900 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700" href="/sign-up/">
+                            <a class="text-center mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700" href="/sign-up/">
                                 Sign Up
                             </a>
                         </div>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="block flex items-center p-8 text-center uppercase">
-                        <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-purple-900 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
+                        <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
                             Sign Up
                         </a>
                     </div>
@@ -186,7 +186,7 @@
                         </div>
 
                         <div class="block flex items-center p-8 text-center">
-                            <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-purple-900 w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
+                            <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
                                 Sign Up
                             </a>
                         </div>

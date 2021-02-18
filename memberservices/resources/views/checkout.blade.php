@@ -15,7 +15,7 @@
                         Click the link below if your browser does not automatically forward you to the payment page.
                     </p>
                     <div id="redirect">
-                    {{ $checkout->button('Proceed to Checkout', ['class' => 'p-4 bg-purple-900 text-white text-bold']) }}
+                    {{ $checkout->button('Proceed to Checkout', ['class' => 'p-4 bg-c-purple text-white text-bold']) }}
                     </div>
                 </div>
             </div>

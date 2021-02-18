@@ -40,12 +40,11 @@ class EmailContentController extends Controller
 
     }
 
-    public function preview(Request $request)
+    public function preview(EmailContent $email)
     {
         $user = auth()->user();
-        $message = $email->email_body;
-        $button = 'https://faithdrivenconsumer.com/contact/';
-        return new UserSubscribed($user,$message,$button);
+        $mailable = $email->mailer_class;
+        return new $mailable($user,$email);
     }
 
 }

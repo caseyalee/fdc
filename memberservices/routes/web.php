@@ -45,9 +45,6 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-// Route::get('/testmail', [SendEmailController::class, 'send'])->name('testmail');
-// Route::get('/testmail-preview', [SendEmailController::class, 'preview'])->name('testmail-preview');
-
 Route::prefix('admin')->middleware(['role:admin'])->group(function () {
     Route::get('/', [EmailContentController::class, 'index'])->name('admin');
     Route::get('/emails', [EmailContentController::class, 'index'])->name('admin-emails');

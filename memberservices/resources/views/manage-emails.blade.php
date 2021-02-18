@@ -54,7 +54,10 @@
                         </td>
                         <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                            <a href="{{route('admin-emails-edit',$email)}}" class="bg-c-purple text-white px-3 py-1 rounded-md font-semibold">Edit</a>
+                            <div class="flex space-x-2">
+                            <a href="{{route('admin-emails-edit',$email)}}" class="bg-c-purple text-white px-3 py-1 rounded-sm font-semibold">Edit</a>
+                            <a href="{{route('admin-email-preview',$email)}}" target="_blank" class="bg-green-600 text-white px-3 py-1 rounded-sm font-semibold">Preview</a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

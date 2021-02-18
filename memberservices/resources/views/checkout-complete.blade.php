@@ -42,9 +42,9 @@
                 var counter = 0;
                 function checkTimeout() {
                     counter++;
-                    var now = new Date();
+                    var redirect_url = "{{env('APP_URL')}}" + "/dashboard";
                     if (counter >= 120) {
-                      window.location.href = '{{env('APP_URL')}}' + '/dashboard';
+                      window.location.href = redirect_url;
                     }
                 }
                 setInterval(checkTimeout, 1000);

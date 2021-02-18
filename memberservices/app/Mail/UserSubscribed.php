@@ -49,7 +49,7 @@ class UserSubscribed extends Mailable
         $template = $email->template;
         $message = $email->email_body;
         $message = str_replace("[member_id]",$user->access_member_id,$message);
-        return $this->markdown($template, [
+        return $this->subject($email->subject)->markdown($template, [
             'message' => $message,
             'button' => $button,
         ]);

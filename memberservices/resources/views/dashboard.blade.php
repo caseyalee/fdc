@@ -24,7 +24,6 @@
                             </div>
                     @endif
 
-
                     @if($subscription)
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h2 class="text-bold text-lg lg:text-2xl mb-4">Your Subscriptions</h2>
@@ -54,9 +53,31 @@
                                 @if($user->subscribed())
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Marketplace</span>
-                                        <span class="text-sm">
-                                            <a class="text-purple-900 underline hover:no-underline" href="https://fdc.enjoymydeals.com/?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a>
-                                        </span>
+
+                                        <div class="text-sm" x-data="showMarketplace({{$subscription->created_at->timestamp}})">
+                                             <div x-show="isPending()">
+                                                <span class="animate-pulse text-green-900 font-semibold">Processing</span>
+                                            </div>
+                                            <div x-show="isComplete()">
+                                                <a class="text-c-purple underline hover:no-underline" href="https://fdc.enjoymydeals.com/?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                            function showMarketplace(purchaseTime) {
+                                                var now = Date.now() / 1000 | 0;
+                                                var minutesAgo = (now-purchaseTime)/60;
+                                                console.log(minutesAgo);
+                                                return {
+                                                    isComplete() {
+                                                        return minutesAgo >= 3
+                                                    },
+                                                    isPending() {
+                                                        return minutesAgo < 3
+                                                    },
+                                                }
+                                            }
+                                        </script>
                                     </td>
                                 @endif
                                 @if(($subscription->onTrial() && $subscription->trial_ends_at) || $subscription->ends_at)
@@ -78,10 +99,10 @@
                                 <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                     <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
 
-                                    <a href="{{route('billing')}}" class="text-purple-900 hover:text-purple-600 underline pl-6 text-sm">Update Billing Info</a>
+                                    <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
 
                                     @if($subscription->stripe_status == 'canceled')
-                                        <a href="{{route('renew')}}" class="text-purple-900 hover:text-purple-600 underline pl-6 text-sm">Renew</a>
+                                        <a href="{{route('renew')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
                                     @endif
                                 </td>
                             </tr>
@@ -121,7 +142,7 @@
                                     </td>
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                                        <a class="text-purple-900 hover:text-purple-600 underline pl-6" target="_blank" href="{{ $invoice->hosted_invoice_url }}">Download</a>
+                                        <a class="text-c-purple hover:text-c-purple-light underline pl-6" target="_blank" href="{{ $invoice->hosted_invoice_url }}">Download</a>
                                     </td>
                                 </tr>
                             @endforeach

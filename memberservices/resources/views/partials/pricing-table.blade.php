@@ -9,7 +9,7 @@
         <p class="text-center text-lg text-gray-700 mt-2 px-6 lg:px-12">
             Become a member and gain access to the <a href="/save/" target="_blank">FDC Marketplace</a> for discounts on travel, dining, shopping and more, in addition to Community benefits.
         </p>
-        <div class="h-1 mx-auto bg-indigo-200 w-24 opacity-75 mt-4 rounded"></div>
+        <div class="h-1 mx-auto bg-c-purple-lighter w-24 opacity-75 mt-4 rounded"></div>
 
         <div class="max-w-full md:max-w-6xl mx-auto my-3 md:pl-8">
             <div class="relative block flex flex-col md:flex-row items-center">
@@ -66,7 +66,7 @@
                             </ul>
                         </div>
                         <div class="block flex items-center p-8">
-                            <a class="text-center mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700" href="/sign-up/">
+                            <a class="text-center mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker" href="/sign-up/">
                                 Sign Up
                             </a>
                         </div>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="block flex items-center p-8 text-center uppercase">
-                        <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
+                        <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
                             Sign Up
                         </a>
                     </div>
@@ -186,7 +186,7 @@
                         </div>
 
                         <div class="block flex items-center p-8 text-center">
-                            <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-gray-700">
+                            <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
                                 Sign Up
                             </a>
                         </div>
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="text-center text-sm">
-                Not sure where to start? <a class="text-purple-900 underline" href="{{route('checkout',['trial'=>1,'membership'=>'monthly'])}}">Try FREE for 7 days</a>.<br>
+                Not sure where to start? <a class="text-c-purple underline" href="{{route('checkout',['trial'=>1,'membership'=>'monthly'])}}">Try FREE for 7 days</a>.<br>
                 Cancel anytime. Billed monthly after trial expires.
             </div>
         </div>

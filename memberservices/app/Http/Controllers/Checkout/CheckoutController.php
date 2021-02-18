@@ -89,8 +89,7 @@ class CheckoutController extends Controller
 
     public function checkoutComplete(Request $request)
     {
-        return 'cool.';
-        // dd($request);
+        return view('checkout-complete');
     }
 
 }

@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout-complete', [CheckoutController::class, 'checkoutComplete'])->name('checkout-complete');
 
     Route::get('/cancel', [CheckoutController::class, 'cancelSubscription'])->name('cancel');
 

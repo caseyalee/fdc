@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function getAccessMemberIdAttribute()
     {
-        return 'fdc_user_id'.$this->id;
+        return env('ACC_MEMBER_PREFIX').$this->id;
     }
 
 

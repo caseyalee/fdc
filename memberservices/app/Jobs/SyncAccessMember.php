@@ -45,7 +45,7 @@ class SyncAccessMember implements ShouldQueue, ShouldBeUnique
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'email_address' => $user->email,
-                'member_customer_identifier' => env('ACC_MEMBER_PREFIX').$user->id,
+                'member_customer_identifier' => $user->access_member_id,
                 'member_status' => $status, // OPEN
                 'record_identifier' => time().'_'.$user->id,
                 'product_identifier' => env('ACC_PROD_ID')

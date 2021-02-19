@@ -107,6 +107,9 @@
                                         <span class="px-2 w-20 text-center inline-block text-xs leading-5 font-semibold rounded-full {{$user->subscription_status_label_color}}">
                                             {{$user->subscription_status_label}}
                                         </span>
+                                        @if( $user->subscription('default')->onGracePeriod() )
+                                            <br><span class="block text-xs">Non-renewing</span>
+                                        @endif
                                     </td>
 
 
@@ -114,10 +117,11 @@
                                     <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
 
-                                        <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
 
                                         @if( $user->subscription('default')->onGracePeriod() )
-                                            <a href="{{route('renew')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
+                                            <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
+                                        @else
+                                            <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
                                         @endif
                                     </td>
 

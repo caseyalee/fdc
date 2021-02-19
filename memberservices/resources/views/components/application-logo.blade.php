@@ -1,1 +1,1 @@
-<img src="{{asset('assets/img/logo-dark.png')}}" alt="Faith Driven Consumer" {{ $attributes }}>
+<img src="{{asset('assets/img/fdc-logo-brand.svg')}}" alt="Faith Driven Consumer" {{ $attributes }}>

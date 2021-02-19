@@ -35,7 +35,7 @@ class CheckoutController extends Controller
 
             $checkout = $user->newSubscription('default', $product_key )->trialDays(7)->checkout(
                 [
-                    'success_url' => route('dashboard'),
+                    'success_url' => route('checkout-complete'),
                     'cancel_url' => route('dashboard'),
                 ]
             );
@@ -44,7 +44,7 @@ class CheckoutController extends Controller
 
             $checkout = $user->newSubscription('default', $product_key )->checkout(
                 [
-                    'success_url' => route('dashboard'),
+                    'success_url' => route('checkout-complete'),
                     'cancel_url' => route('dashboard'),
                 ]
             );

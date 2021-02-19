@@ -143,7 +143,10 @@ function site_footer() {
         <div class="container lg:pl-80">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <div class="text-xs text-white text-opacity-50">
-                    <p><?php echo get_bloginfo( $show = 'description', $filter = 'raw' ); ?></p>
+                    <p>
+                        <?php $footer_text = get_field('footer_text','option'); ?>
+                        <?php echo $footer_text; ?>
+                    </p>
                 </div>
                 <div class="logo flex-shrink-0 flex items-center">
                     <a href="<?php echo get_home_url(); ?>">

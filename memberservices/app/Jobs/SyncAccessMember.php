@@ -63,7 +63,7 @@ class SyncAccessMember implements ShouldQueue, ShouldBeUnique
                 'Content-type' => 'application/json',
             ])->post( env('ACC_ENDPOINT_URL') . 'imports', $import );
 
-            Log::info("SyncAccessMember::ACCESS_API_RESPONSE:");
+            Log::info("LOG_ACCESS_API_RESPONSE::SyncAccessMember");
             Log::info(var_export($response, true));
 
     }

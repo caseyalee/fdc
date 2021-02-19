@@ -5,11 +5,11 @@ namespace App\Listeners;
 use App\Jobs\SyncAccessMember;
 use App\Mail\UserSubscribed;
 use App\Models\EmailContent;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-// use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Cashier;
+
+// does not need to go on queue - just a listener to the webhook - this is a dispatcher only
 
 class WebhookHandledListener
 {
@@ -28,9 +28,6 @@ class WebhookHandledListener
      */
     public function handle($event)
     {
-        // @todo
-        // 1. customer.subscription.created
-        //  sync with access
         // 2. customer.subscription.deleted
         // sync with access
         // 3. customer.subscription.trial_will_end
@@ -46,7 +43,7 @@ class WebhookHandledListener
             if ($customer_id) {
 
                 $user = Cashier::findBillable($customer_id);
-                $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->firstorFail();
+                $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->firstOrFail();
 
                 // Push User to Access API
                 SyncAccessMember::dispatch($user,'OPEN');
@@ -56,9 +53,8 @@ class WebhookHandledListener
 
 
             }
-
-            // Log::info("Generic Webhook Handled in listener");
-            // Log::info(var_export($event->payload, true));
+            Log::info("LOG_STRIPE_WEBHOOK::WebhookHandledListener[customer.subscription.created]");
+            Log::info(var_export($event->payload, true));
         }
 
     }

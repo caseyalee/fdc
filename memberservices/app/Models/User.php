@@ -46,10 +46,14 @@ class User extends Authenticatable
     ];
 
 
+
+
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+
 
     public function getCVTAttribute()
     {
@@ -57,15 +61,21 @@ class User extends Authenticatable
         return sha1($cvtdata);
     }
 
+
+
     public function getAccessMemberIdAttribute()
     {
         return 'fdc_user_id'.$this->id;
     }
 
+
+
     public function getAvatarAttribute()
     {
         return Gravatar::get($this->email);
     }
+
+
 
     public function getSubscriptionStatusLabelAttribute()
     {
@@ -77,6 +87,8 @@ class User extends Authenticatable
         return $this->getStatusLabelProperty($status,'text');
     }
 
+
+
     public function getSubscriptionStatusLabelColorAttribute()
     {
         $status = '';
@@ -86,6 +98,8 @@ class User extends Authenticatable
         }
         return $this->getStatusLabelProperty($status,'color');
     }
+
+
 
     public function getStatusLabelProperty($status,$type='color')
     {

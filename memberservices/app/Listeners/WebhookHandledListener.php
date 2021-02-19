@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\SyncAccessMember;
 use App\Mail\UserSubscribed;
 use App\Models\EmailContent;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,27 +13,23 @@ use Laravel\Cashier\Cashier;
 
 class WebhookHandledListener
 {
+
     /**
-     * Create the event listener.
-     *
-     * @return void
+     * WebhookHandledListener constructor.
      */
     public function __construct()
     {
         //
     }
 
+
     /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
+     * @param $event
      */
     public function handle($event)
     {
         // @todo
         // 1. customer.subscription.created
-        //  send welcome email (Assuming new customer)
         //  sync with access
         // 2. customer.subscription.deleted
         // sync with access
@@ -40,23 +37,29 @@ class WebhookHandledListener
         // Email the customer
 
 
-        // Log::info("Generic Webhook Handled in listener");
-
+        // New Subscription
         // customer.subscription.created
         if ($event->payload['type'] == 'customer.subscription.created') {
 
             $customer_id = $event->payload['data']['object']['customer'];
 
             if ($customer_id) {
+
                 $user = Cashier::findBillable($customer_id);
-                $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->first();
+                $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->firstorFail();
+
+                // Push User to Access API
+                SyncAccessMember::dispatch($user,'OPEN');
+
+                // Dispatches the welcome email after 3 minutes
                 Mail::to($user)->later(now()->addMinutes(3), new UserSubscribed($user,$email));
-                // Log::info(var_export($event->payload, true));
+
+
             }
+
+            // Log::info("Generic Webhook Handled in listener");
+            // Log::info(var_export($event->payload, true));
         }
-
-
-
 
     }
 }

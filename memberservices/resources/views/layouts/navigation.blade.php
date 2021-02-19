@@ -23,7 +23,8 @@
                         <x-slot name="name">Admin</x-slot>
                         <x-slot name="children">
                             <a href="{{route('admin-emails')}}">Manage Emails</a>
-                            <a href="{{route('changelog')}}">Changelog</a>
+                            <a href="{{route('admin-members')}}">View Members</a>
+                            <a href="{{route('admin-changelog')}}">Changelog</a>
                         </x-slot>
                     </x-nav-link-parent>
                     @endrole

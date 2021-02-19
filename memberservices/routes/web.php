@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Checkout\CheckoutController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\EmailContentController;
-use App\Http\Controllers\Mail\SendEmailController;
+use App\Http\Controllers\Dashboard\MembersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +52,8 @@ Route::prefix('admin')->middleware(['role:admin'])->group(function () {
     Route::get('/emails/edit/{email}', [EmailContentController::class, 'edit'])->name('admin-emails-edit');
     Route::post('/emails/update/{email}', [EmailContentController::class, 'update'])->name('admin-emails-update');
     Route::get('/emails/preview/{email}', [EmailContentController::class, 'preview'])->name('admin-email-preview');
-    Route::get('/changelog', '\EmtiazZahid\GitLogLaravel\GitLogLaravelController@index')->name('changelog');
+    Route::get('/changelog', '\EmtiazZahid\GitLogLaravel\GitLogLaravelController@index')->name('admin-changelog');
+    Route::get('/members', [MembersController::class, 'index'])->name('admin-members');
 });
 
 require __DIR__.'/auth.php';

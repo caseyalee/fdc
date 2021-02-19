@@ -24,35 +24,40 @@
                             </div>
                     @endif
 
-                    @if($subscription)
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <h2 class="text-bold text-lg lg:text-2xl mb-4">Your Subscriptions</h2>
-                        <!-- component -->
-                        <table class="border-collapse w-full">
-                            <thead>
-                            <tr>
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Subscription</th>
-                                @if($user->subscribed())
-                                    <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Marketplace</th>
-                                @endif
-                                @if(($subscription->onTrial() && $subscription->trial_ends_at) || $subscription->ends_at)
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Valid Through</th>
-                                @endif
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Status</th>
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="bg-white flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                                <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                    <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Subscription</span>
-                                    <span class="text-sm">
-                                        {{$subscription->product_name}}
-                                    </span>
-                                </td>
-                                @if($user->subscribed())
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                        <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Marketplace</span>
+                    {{-- Subscription Table --}}
+                    @if( $user->subscribed('default') )
+
+                        <div class="p-6 bg-white border-b border-gray-200">
+
+                            <h2 class="text-bold text-lg lg:text-2xl mb-4">Your Subscriptions</h2>
+
+                            <table class="border-collapse w-full">
+                                <thead class="bg-gray-100 border border-gray-200">
+                                    <tr>
+                                        <th scope="col" class="px-3 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Subscription</th>
+                                        <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Marketplace</th>
+                                        @if( $user->subscription('default')->onTrial() || $user->subscription('default')->onGracePeriod() )
+                                        <th scope="col" class="px-3 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Valid Through</th>
+                                        @endif
+                                        <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Status</th>
+                                        <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="bg-white flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+
+                                    {{-- Subscription Title/Name --}}
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+                                        <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Subscription</span>
+                                        <span class="text-sm">
+                                            {{$subscription->product_name}}
+                                        </span>
+                                    </td>
+
+
+                                    {{-- Marketplace Link --}}
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                        <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Marketplace</span>
 
                                         <div class="text-sm" x-data="showMarketplace({{$subscription->created_at->timestamp}})">
                                              <div x-show="isPending()">
@@ -79,69 +84,87 @@
                                             }
                                         </script>
                                     </td>
-                                @endif
-                                @if(($subscription->onTrial() && $subscription->trial_ends_at) || $subscription->ends_at)
-                                <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                    <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Valid Through</span>
-                                    <span class="text-sm">
-                                        @if($subscription->trial_ends_at)
-                                            {{ $subscription->trial_ends_at->toFormattedDateString() }}
-                                        @elseif($subscription->ends_at)
-                                            {{ $subscription->ends_at->toFormattedDateString() }}
-                                        @endif
-                                    </span>
-                                </td>
-                                @endif
-                                <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                    <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                                    <span class="rounded py-1 px-3 text-xs font-bold {{$subscription->color}}">{{$subscription->status_text}}</span>
-                                </td>
-                                <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                    <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
+                                    
 
-                                    <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
-
-                                    @if($subscription->stripe_status == 'canceled')
-                                        <a href="{{route('renew')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
+                                    {{-- Subscription Date --}}
+                                    @if( $user->subscription('default')->onTrial() || $user->subscription('default')->onGracePeriod() )
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                                        <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Valid Through</span>
+                                        <span class="text-sm">
+                                            @if($subscription->ends_at)
+                                                {{ $subscription->ends_at->toFormattedDateString() }}
+                                            @elseif($subscription->trial_ends_at)
+                                                {{ $subscription->trial_ends_at->toFormattedDateString() }}
+                                            @endif
+                                        </span>
+                                    </td>
                                     @endif
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+
+                                    {{-- Subscription Status --}}
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static text-center whitespace-nowrap">
+                                        <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
+                                        <span class="px-2 w-20 text-center inline-block text-xs leading-5 font-semibold rounded-full {{$user->subscription_status_label_color}}">
+                                            {{$user->subscription_status_label}}
+                                        </span>
+                                    </td>
+
+
+                                    {{-- Subscription Actions --}}
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                                        <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
+
+                                        <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
+
+                                        @if( $user->subscription('default')->onGracePeriod() )
+                                            <a href="{{route('renew')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
+                                        @endif
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    @endif
+                    {{-- End Subscription Table --}}
+
+                    {{-- Sign Up CTA --}}
+                    @if ( !$user->subscribed('default') )
+                        @include('partials.pricing-table',['user',$user])
                     @endif
 
 
                     @if(count($invoices))
-
+                    {{-- Invoices Table --}}
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h2 class="text-bold text-lg lg:text-2xl mb-4">Your Invoice History</h2>
                         <table class="border-collapse w-full">
-                            <thead>
+                            <thead class="bg-gray-100 border border-gray-200">
                             <tr>
-                                <th class="p-3 font-bold uppercase bg-gray-100 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th>
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Total</th>
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Date</th>
-                                <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
+                                <th scope="col" class="px-3 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Description</th>
+                                <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Total</th>
+                                <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Date</th>
+                                <th scope="col" class="px-3 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($invoices as $invoice)
                                 <tr class="bg-white flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                        <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Description</span>
+
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
                                         {{ $invoice->lines->first()->description }}
                                     </td>
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                        <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Total</span>
+
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         {{ $invoice->total() }}
                                     </td>
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                        <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Date</span>
+
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         {{ $invoice->date()->toFormattedDateString() }}
                                     </td>
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                                        <span class="lg:hidden absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
+                                    
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <a class="text-c-purple hover:text-c-purple-light underline pl-6" target="_blank" href="{{ $invoice->hosted_invoice_url }}">Download</a>
                                     </td>
                                 </tr>
@@ -149,12 +172,8 @@
                             </tbody>
                         </table>
                     </div>
-
                     @endif
-
-                @if (!$user->subscribed('default'))
-                    @include('partials.pricing-table')
-                @endif
+                    {{-- End Invoices Table --}}
 
             </div>
         </div>

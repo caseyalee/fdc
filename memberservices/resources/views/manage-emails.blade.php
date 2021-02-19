@@ -1,6 +1,5 @@
 <x-app-layout>
 
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Manage Emails') }}
@@ -8,10 +7,9 @@
     </x-slot>
 
 
-    <div class="py-12">
+    <div class="py-6 lg:py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4 lg:p-8">
 
                 @if (session('status'))
                     <div class="bg-blue-200 px-6 py-4 mx-auto mb-8 rounded-md text-lg flex items-center">
@@ -22,47 +20,71 @@
                     </div>
                 @endif
 
+                <div class="flex flex-col">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="align-middle inline-block min-w-full px-6">
+                            <div class="overflow-hidden border-b border-gray-200">
 
-                <table class="border-collapse w-full">
-                    <thead>
-                    <tr>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">ID</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Subject</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Internal Description</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Updated</th>
-                        <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($emails as $email)
-                    <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 text-sm">
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">ID</span>
-                            {{$email->id}}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Subject</span>
-                            {{$email->subject}}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Description</span>
-                            {{$email->internal_description}}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Updated</span>
-                            {{ $email->updated_at->toFormattedDateString() }}
-                        </td>
-                        <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                            <div class="flex space-x-2">
-                            <a href="{{route('admin-emails-edit',$email)}}" class="bg-c-purple text-white px-3 py-1 rounded-sm font-semibold">Edit</a>
-                            <a href="{{route('admin-email-preview',$email)}}" target="_blank" class="bg-green-600 text-white px-3 py-1 rounded-sm font-semibold">Preview</a>
+                                <table class="border-collapse w-full border border-gray-200">
+                                      <thead class="bg-gray-100 border border-gray-200">
+                                        <tr>
+                                          <th scope="col" class="px-6 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">
+                                            ID
+                                          </th>
+                                          <th scope="col" class="px-6 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">
+                                            Subject
+                                          </th>
+                                          <th scope="col" class="px-6 py-2 text-left text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">
+                                            Internal Description
+                                          </th>
+                                          <th scope="col" class="px-6 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">
+                                            Updated
+                                          </th>
+                                          <th scope="col" class="px-6 py-2 text-center text-sm font-normal text-gray-500 uppercase tracking-wider border border-gray-200 hidden lg:table-cell">
+                                            Actions
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        @foreach($emails as $email)
+
+                                        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 text-sm">
+                                            <td class="px-6 py-4">
+                                                <div class="text-xs text-gray-500">
+                                                    {{$email->id}}
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <a class="text-c-purple hover:text-c-purple-light" href="{{route('admin-emails-edit',$email)}}">{{$email->subject}}</a>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="text-xs text-gray-500 font-semibold">
+                                                    {{$email->internal_description}}
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="text-xs text-gray-500">
+                                                {{ $email->updated_at->toFormattedDateString() }}
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex space-x-2">
+                                                    <a href="{{route('admin-emails-edit',$email)}}" class="bg-c-purple hover:bg-c-purple-light text-white px-3 py-1 rounded-sm font-semibold">Edit</a>
+                                                    <a href="{{route('admin-email-preview',$email)}}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-sm font-semibold">Preview</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </div>
+                    </div>
+                </div>
+                {{-- End Table --}}
+
             </div>
         </div>
     </div>

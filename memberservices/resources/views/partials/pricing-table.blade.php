@@ -3,7 +3,7 @@
     <div class="container max-w-full mx-auto py-12 px-6">
 
         <h1 class="text-center text-4xl text-black font-medium leading-snug tracking-tight">
-            Hi {{auth()->user()->first_name}}!<br>Select a plan below to get started.
+            {{ $user->subscription('default')->ended() ? 'Welcome back' : 'Hi' }} {{$user->first_name}}!<br>Select a plan below to get started.
         </h1>
 
         <p class="text-center text-lg text-gray-700 mt-2 px-6 lg:px-12">

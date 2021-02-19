@@ -22,7 +22,7 @@
                         </div>
                     @endif
 
-                    @include('partials.pricing-table')
+                    @include('partials.pricing-table',['user',$user])
 
             </div>
         </div>

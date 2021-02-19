@@ -155,7 +155,13 @@ function site_footer() {
         <div class="bg-c-purple-darker">
             <div class="container lg:pl-80 text-xs flex justify-between text-c-purple-lighter py-3">
                 <div>&copy; <?php echo date('Y'); ?> <?php echo get_bloginfo( $show = 'name', $filter = 'raw' ); ?>. All Rights Reserved.</div>
-                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <div>
+                    <?php $footer_menu_items = wp_get_nav_menu_items('footer-menu');
+                    foreach ($footer_menu_items as $menu_item) {
+                        echo '<a target="'.$menu_item->target.'" href="'.$menu_item->url.'">'.$menu_item->title.'</a>&nbsp;';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 <?php
 $slides = get_field('slides');
 ?>
-
+<?php if ($slides) : ?>
 <div class="slider">
     <?php
     foreach ($slides as $slide) :
@@ -32,6 +32,9 @@ $slides = get_field('slides');
     </div>
     <?php endforeach; ?>
 </div>
+<?php else : ?>
+<div class="block w-100 h-24"></div>
+<?php endif; ?>
 
 <div class="lg:pl-80 pb-6 lg:pb-12" id="mainbody">
     <?php get_template_part( 'loops/layout_builder', get_post_type() ); ?>

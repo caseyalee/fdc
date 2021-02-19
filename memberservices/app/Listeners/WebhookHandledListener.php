@@ -57,5 +57,22 @@ class WebhookHandledListener
             Log::info(var_export($event->payload, true));
         }
 
+
+
+        if ($event->payload['type'] == 'customer.subscription.deleted') {
+
+            $customer_id = $event->payload['data']['object']['customer'];
+
+            if ($customer_id) {
+
+                $user = Cashier::findBillable($customer_id);
+                // Push User to Access API
+                SyncAccessMember::dispatch($user,'CLOSE');
+
+            }
+            Log::info("LOG_STRIPE_WEBHOOK::WebhookHandledListener[customer.subscription.created]");
+            Log::info(var_export($event->payload, true));
+        }
+
     }
 }

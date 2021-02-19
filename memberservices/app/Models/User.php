@@ -110,7 +110,7 @@ class User extends Authenticatable
             ],
             'active' => [
                 'color' => 'bg-green-400 text-green-900',
-                'text' => 'Active'
+                'text' => '😀 Active!'
             ],
             'incomplete' => [
                 'color' => 'bg-yellow-400 text-yellow-900',
@@ -122,11 +122,11 @@ class User extends Authenticatable
             ],
             'past_due' => [
                 'color' => 'bg-red-600 text-white',
-                'text' => 'Past Due'
+                'text' => '😔 Past Due'
             ],
             'canceled' => [
                 'color' => 'bg-red-600 text-white',
-                'text' => 'Cancelled'
+                'text' => '😔 Cancelled'
             ],
             'unpaid' => [
                 'color' => 'bg-red-600 text-white',

@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function index()
     {
         // $users = User::all();
-        $userdata = array();
+        // $userdata = array();
         // foreach ($users as $v_user) {
 
         //     $userdata[] = array(
@@ -70,8 +70,6 @@ class DashboardController extends Controller
                 $product_name = 'Marketplace Membership (Billed Monthly)';
             }
 
-            $subscription->color        = $this->getSubscriptionStatusLabel($subscription->stripe_status, 'color');
-            $subscription->status_text  = $this->getSubscriptionStatusLabel($subscription->stripe_status, 'text');
             $subscription->product_name = $product_name;
 
         } else {
@@ -84,44 +82,11 @@ class DashboardController extends Controller
     }
 
 
-    public function getSubscriptionStatusLabel($status,$type='color')
+
+    public function renewPage()
     {
-        $statuses = array(
-            'trialing' => [
-                'color' => 'bg-green-300',
-                'text' => 'Trial'
-            ],
-            'active' => [
-                'color' => 'bg-green-400',
-                'text' => 'Active'
-            ],
-            'incomplete' => [
-                'color' => 'bg-yellow-400',
-                'text' => 'Incomplete'
-            ],
-            'incomplete_expired' => [
-                'color' => 'bg-red-400',
-                'text' => 'Incomplete/Expired'
-            ],
-            'past_due' => [
-                'color' => 'bg-red-400',
-                'text' => 'Past Due'
-            ],
-            'canceled' => [
-                'color' => 'bg-red-400',
-                'text' => 'Canceled'
-            ],
-            'unpaid' => [
-                'color' => 'bg-red-400',
-                'text' => 'Unpaid'
-            ],
-        );
-        if ($type == 'color')
-            return $statuses[$status]['color'];
-        if ($type == 'text')
-            return $statuses[$status]['text'];
-
-
+        $user = auth()->user();
+        return view('renew')->with('user',$user);
     }
 
 

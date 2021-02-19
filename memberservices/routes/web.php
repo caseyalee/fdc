@@ -35,9 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/cancel', [CheckoutController::class, 'cancelSubscription'])->name('cancel');
 
-    Route::get('/renew', function () {
-        return view('renew');
-    })->name('renew');
+    Route::get('/renew', [DashboardController::class, 'renewPage'])->name('renew');
 
     Route::get('/billing', function (Request $request) {
         // $url = $request->user()->billingPortalUrl(route('dashboard'));

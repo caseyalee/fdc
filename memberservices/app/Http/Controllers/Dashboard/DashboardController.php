@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SyncAccessMember;
+use App\Mail\AdminNotification;
 use App\Mail\UserSubscribed;
 use App\Models\EmailContent;
 use App\Models\User;

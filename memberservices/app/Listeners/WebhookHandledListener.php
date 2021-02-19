@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Jobs\SyncAccessMember;
+use App\Mail\AdminNotification;
 use App\Mail\UserSubscribed;
 use App\Models\EmailContent;
 use Illuminate\Support\Facades\Log;
@@ -50,6 +51,10 @@ class WebhookHandledListener
 
                 // Dispatches the welcome email after 3 minutes
                 Mail::to($user)->later(now()->addMinutes(3), new UserSubscribed($user,$email));
+
+                $subject = 'New User Subscription on FDC';
+                $message = 'User ID: '.$user->id.' ('.$user->full_name.') purchased a subscription. <br><br> User was synced with Access. <br><br> An email will be sent an to the user in three minutes.';
+                Mail::to(env('ADMIN_NOTIFY_EMAIL_ADDR'))->queue(new AdminNotification($subject,$message));
 
 
             }

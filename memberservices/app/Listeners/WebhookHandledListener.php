@@ -75,7 +75,7 @@ class WebhookHandledListener
                 SyncAccessMember::dispatch($user,'CLOSE');
 
             }
-            Log::info("LOG_STRIPE_WEBHOOK::WebhookHandledListener[customer.subscription.created]");
+            Log::info("LOG_STRIPE_WEBHOOK::WebhookHandledListener[customer.subscription.deleted]");
             Log::info(var_export($event->payload, true));
         }
 

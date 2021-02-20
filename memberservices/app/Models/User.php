@@ -57,7 +57,9 @@ class User extends Authenticatable
 
     public function getCVTAttribute()
     {
-        $cvtdata =  env('ACC_ORG_ID').'-'.env('ACC_PROG_ID').'-'.'FDC_USER_ID'.$this->id;
+
+        $cvtdata =  env('ACC_ORG_ID'). '-' .env('ACC_PROG_ID'). '-'. env('ACC_MEMBER_PREFIX') . $this->id;
+        $cvtdata = strtoupper($cvtdata);
         return sha1($cvtdata);
     }
 

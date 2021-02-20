@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SyncAccessMember implements ShouldQueue, ShouldBeUnique
+class SyncAccessMember implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -63,8 +63,10 @@ class SyncAccessMember implements ShouldQueue, ShouldBeUnique
                 'Content-type' => 'application/json',
             ])->post( env('ACC_ENDPOINT_URL') . 'imports', $import );
 
-            Log::info("LOG_ACCESS_API_RESPONSE::SyncAccessMember");
+            Log::info("BEGIN_LOG_ACCESS_API_RESPONSE::SyncAccessMember");
             Log::info(var_export($response, true));
+            Log::info(var_export($import, true));
+            Log::info("END_LOG_ACCESS_API_RESPONSE::SyncAccessMember");
 
     }
 }

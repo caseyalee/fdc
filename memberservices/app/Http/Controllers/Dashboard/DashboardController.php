@@ -10,6 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Cashier;
 
+
+use Illuminate\Support\Facades\Log;
+
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Http;
 // use Laravel\Cashier\Cashier;
@@ -20,6 +23,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+        // SyncAccessMember::dispatch($user,'OPEN');
+
         $subscription = $user->subscription();
 
         if ($subscription) {

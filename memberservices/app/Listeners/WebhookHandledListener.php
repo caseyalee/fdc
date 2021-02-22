@@ -49,8 +49,8 @@ class WebhookHandledListener
                 // Push User to Access API
                 SyncAccessMember::dispatch($user,'OPEN');
 
-                // Dispatches the welcome email after 3 minutes
-                Mail::to($user)->later(now()->addMinutes(3), new UserSubscribed($user,$email));
+                // Dispatches the welcome email after 1 minute
+                Mail::to($user)->later(now()->addMinutes(1), new UserSubscribed($user,$email));
 
                 $subject = 'New User Subscription on FDC';
                 $message = 'User ID: '.$user->id.' ('.$user->full_name.') purchased a subscription. <br><br> User was synced with Access. <br><br> An email will be sent to the user in three minutes.';

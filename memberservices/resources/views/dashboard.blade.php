@@ -76,10 +76,10 @@
                                                 console.log(minutesAgo);
                                                 return {
                                                     isComplete() {
-                                                        return minutesAgo >= 3
+                                                        return minutesAgo >= 1
                                                     },
                                                     isPending() {
-                                                        return minutesAgo < 3
+                                                        return minutesAgo < 1
                                                     },
                                                 }
                                             }

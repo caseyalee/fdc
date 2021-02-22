@@ -28,7 +28,7 @@
                                 We’re excited for you to jump in and begin exploring, as you’ll discover easy and convenient discounts that matter to YOU and YOUR everyday life!
                             </p>
                              <p class="mb-3 text-sm">
-                                Eager to get there without the email? This page will also redirect you to do the same in less than 2 minutes.  Enjoy!
+                                Eager to get there without the email? This page will also redirect you to do the same in less than 1 minute.  Enjoy!
                             </p>
                         </div>
 
@@ -43,7 +43,7 @@
                 function checkTimeout() {
                     counter++;
                     var redirect_url = "{{env('APP_URL')}}" + "/dashboard";
-                    if (counter >= 120) {
+                    if (counter >= 45) {
                       window.location.href = redirect_url;
                     }
                 }

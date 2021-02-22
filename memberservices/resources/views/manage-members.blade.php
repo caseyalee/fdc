@@ -53,14 +53,14 @@
 
                               <td class="px-6 py-4 border-b border-gray-200">
                                 @if ($user->subscription())
-                                  <div class="text-xs text-gray-600 font-mono"><a target="_blank" href="https://dashboard.stripe.com/test/subscriptions/{{$user->subscription()->stripe_id}}">{{$user->subscription()->stripe_id}}</a></div>
+                                  <div class="text-xs text-gray-600 font-mono"><a target="_blank" href="https://dashboard.stripe.com/subscriptions/{{$user->subscription()->stripe_id}}">{{$user->subscription()->stripe_id}}</a></div>
                                 @else    
                                   <div class="text-sm text-gray-500">No Subscription</div>
                                 @endif
                               </td>
 
                               <td class="px-6 py-4 border-b border-gray-200">
-                                <a class="text-xs leading-5 font-mono text-gray-600" target="_blank" href="https://dashboard.stripe.com/test/customers/{{$user->stripe_id}}">
+                                <a class="text-xs leading-5 font-mono text-gray-600" target="_blank" href="https://dashboard.stripe.com/customers/{{$user->stripe_id}}">
                                   {{$user->stripe_id}}
                                 </a>
                               </td>

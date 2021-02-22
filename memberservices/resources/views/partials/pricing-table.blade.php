@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="flex flex-wrap mt-3 px-6">
-                            <ul>
+                            <ul class="lg:mb-10">
                                 <li class="flex items-center">
                                     <div class=" rounded-full p-2 fill-current text-green-700">
                                         <svg class="w-6 h-6 align-middle" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -75,17 +75,15 @@
 
                 <div class="w-full max-w-md sm:w-2/3 lg:w-1/3 sm:my-5 my-8 relative z-10 bg-white rounded-lg shadow-lg">
                     <div class="text-sm leading-none rounded-t-lg bg-gray-200 text-black font-semibold uppercase py-4 text-center tracking-wide">
-                        Annual
+                        Monthly Plan
                     </div>
                     <div class="block text-left text-sm sm:text-md max-w-sm mx-auto mt-2 text-black px-8 lg:px-6">
-                        <h1 class="text-lg font-medium uppercase p-3 pb-0 text-center tracking-wide">
-                            Full Access
-                        </h1>
-                        <h2 class="text-sm text-gray-500 text-center pb-6"><span class="text-3xl">$25</span> /year</h2>
-                        <span class="text-center block">
-                            Save $35/yr when you subscribe to an annual plan for just $25.
-                        </span>
-                    </div>
+                            <h1 class="text-lg font-medium uppercase p-3 pb-0 text-center tracking-wide">
+                                Monthly
+                            </h1>
+                            <h2 class="text-sm text-gray-500 text-center pb-6"><span class="text-3xl">$5</span> /mo.</h2>
+                            <span class="text-center block">Pay as you go on a monthly basis.</span>
+                        </div>
                     <div class="flex pl-8 justify-start sm:justify-start mt-3">
                         <ul>
                             <li class="flex items-center mb-2">
@@ -128,8 +126,8 @@
                     </div>
 
                     <div class="block flex items-center p-8 text-center uppercase">
-                        <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
-                            Sign Up
+                       <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
+                                Sign Up
                         </a>
                     </div>
 
@@ -139,10 +137,12 @@
                     <div class="bg-white text-black rounded-lg shadow-inner shadow-lg overflow-hidden lg:pl-6">
                         <div class="block text-left text-sm sm:text-md max-w-sm mx-auto mt-2 text-black px-8 lg:px-6">
                             <h1 class="text-lg font-medium uppercase p-3 pb-0 text-center tracking-wide">
-                                Monthly
+                                Full Access
                             </h1>
-                            <h2 class="text-sm text-gray-500 text-center pb-6">$5/mo</h2>
-                            <span class="text-center block">Pay as you go on a monthly basis.</span>
+                            <h2 class="text-sm text-gray-500 text-center pb-6"><span class="text-xl">$25</span> /year</h2>
+                            <span class="text-center block">
+                                Save $35/yr when you subscribe annually.
+                            </span>
                         </div>
                         <div class="flex flex-wrap mt-3 px-6">
                             <ul>
@@ -186,7 +186,7 @@
                         </div>
 
                         <div class="block flex items-center p-8 text-center">
-                            <a href="{{route('checkout',['membership'=>'monthly'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
+                            <a href="{{route('checkout',['membership'=>'annual'])}}" class="mt-3 text-lg font-semibold bg-c-purple w-full text-white rounded-lg px-6 py-3 block shadow-xl hover:bg-c-purple-darker">
                                 Sign Up
                             </a>
                         </div>

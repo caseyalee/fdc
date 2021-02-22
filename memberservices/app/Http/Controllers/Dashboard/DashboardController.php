@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
-        // SyncAccessMember::dispatch($user,'OPEN');
+        // SyncAccessMember::dispatch($user,'SUSPEND'); // SUSPEND | OPEN
 
         $subscription = $user->subscription();
 

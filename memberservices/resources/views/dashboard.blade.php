@@ -64,7 +64,8 @@
                                                 <span class="animate-pulse text-green-900 font-semibold">Processing</span>
                                             </div>
                                             <div x-show="isComplete()">
-                                                <a class="text-c-purple underline hover:no-underline" href="https://fdc.enjoymydeals.com/?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a>
+                                                <a class="text-c-purple underline hover:no-underline" href="https://fdc.enjoymydeals.com/?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a><br>
+                                                <span class="text-xs">Your Member ID: <span class="text-gray-600 bg-gray-100 font-mono rounded" style="padding:2px;">{{env('ACC_MEMBER_PREFIX')}}{{$user->id}}</span></span>
                                             </div>
                                         </div>
 

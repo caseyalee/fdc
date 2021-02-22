@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\Log;
 class DashboardController extends Controller
 {
 
+    public function marketplace()
+    {
+        $user = auth()->user();
+        $subscription = $user->subscription('default');
+        if ($subscription) {
+            $redirect_url = env('ACC_MARKETPLACE_URL') . '?cvt=' . $user->CVT;
+            return redirect($redirect_url);
+        }
+        return redirect()->route('dashboard');
+    }
+
     public function index()
     {
         $user = auth()->user();

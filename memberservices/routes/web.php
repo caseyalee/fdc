@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
         return $request->user()->redirectToBillingPortal(route('dashboard'));
     })->name('billing');
 
+    Route::get('/marketplace', [DashboardController::class, 'marketplace'])->name('marketplace');
+
 });
 
 Route::prefix('admin')->middleware(['role:admin'])->group(function () {

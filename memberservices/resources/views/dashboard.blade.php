@@ -64,7 +64,7 @@
                                                 <span class="animate-pulse text-green-900 font-semibold">Processing</span>
                                             </div>
                                             <div x-show="isComplete()">
-                                                <a class="text-c-purple underline hover:no-underline" href="https://fdc.enjoymydeals.com/?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a><br>
+                                                <a class="text-c-purple underline hover:no-underline" href="{{env('ACC_MARKETPLACE_URL')}}?cvt={{$user->CVT}}" target="_blank">Visit Marketplace</a><br>
                                                 <span class="text-xs">Your Member ID: <span class="text-gray-600 bg-gray-100 font-mono rounded" style="padding:2px;">{{env('ACC_MEMBER_PREFIX')}}{{$user->id}}</span></span>
                                             </div>
                                         </div>
@@ -117,10 +117,8 @@
                                     {{-- Subscription Actions --}}
                                     <td class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 right-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-
-
                                         @if( $user->subscription('default')->onGracePeriod() )
-                                            <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Renew</a>
+                                            <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline text-sm">Renew</a>
                                         @else
                                             <a href="{{route('billing')}}" class="text-c-purple hover:text-c-purple-light underline pl-6 text-sm">Update Billing Info</a>
                                         @endif

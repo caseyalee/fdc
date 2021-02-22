@@ -23,6 +23,16 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+
+        // $touser = User::find(6);
+        // $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->firstOrFail();
+        // Mail::to($touser)->queue(new UserSubscribed($touser,$email));
+
+        // $user->createOrGetStripeCustomer();
+        // $user->updateStripeCustomer([
+        //     'name' => $user->full_name,
+        //     'description' =>' Web Member ID: '.$user->id.''
+        // ]);
         // SyncAccessMember::dispatch($user,'SUSPEND'); // SUSPEND | OPEN
 
         $subscription = $user->subscription();

@@ -72,7 +72,7 @@ class WebhookHandledListener
 
                 $user = Cashier::findBillable($customer_id);
                 // Push User to Access API
-                SyncAccessMember::dispatch($user,'CLOSE');
+                SyncAccessMember::dispatch($user,'SUSPEND');
 
             }
             Log::info("LOG_STRIPE_WEBHOOK::WebhookHandledListener[customer.subscription.deleted]");

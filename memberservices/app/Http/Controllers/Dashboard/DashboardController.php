@@ -24,15 +24,19 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
+        // Ensure the user is a stripe customer
+        if (!$user->stripe_id) {
+            $user->createOrGetStripeCustomer();
+            $user->updateStripeCustomer([
+                'name' => $user->full_name,
+                'description' =>' Web Member ID: '.$user->id.''
+            ]);
+        }
+
         // $touser = User::find(6);
         // $email = EmailContent::where('mailer_class','App\Mail\UserSubscribed')->firstOrFail();
         // Mail::to($touser)->queue(new UserSubscribed($touser,$email));
 
-        // $user->createOrGetStripeCustomer();
-        // $user->updateStripeCustomer([
-        //     'name' => $user->full_name,
-        //     'description' =>' Web Member ID: '.$user->id.''
-        // ]);
         // SyncAccessMember::dispatch($user,'SUSPEND'); // SUSPEND | OPEN
 
         $subscription = $user->subscription();

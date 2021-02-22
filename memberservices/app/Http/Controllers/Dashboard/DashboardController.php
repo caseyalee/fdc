@@ -28,7 +28,7 @@ class DashboardController extends Controller
             $redirect_url = env('ACC_MARKETPLACE_URL') . '?cvt=' . $user->CVT;
             return redirect($redirect_url);
         }
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('status','Please choose a subscription to access the FDC Marketplace.');
     }
 
     public function index()

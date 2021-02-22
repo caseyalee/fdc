@@ -18,6 +18,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Account Management') }}
                     </x-nav-link>
+                    @if (auth()->user() && auth()->user()->subscription('default'))
+                    <x-nav-link :href="route('marketplace')" :active="request()->routeIs('marketplace')">
+                        {{ __('Marketplace') }}
+                    </x-nav-link>
+                    @endif
                     @role('admin')
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('admin*')">
                         <x-slot name="name">Admin</x-slot>

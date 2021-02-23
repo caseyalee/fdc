@@ -42,7 +42,8 @@
                 var counter = 0;
                 function checkTimeout() {
                     counter++;
-                    var redirect_url = "{{env('APP_URL')}}" + "/dashboard";
+                    console.log(counter);
+                    var redirect_url = "{{env('APP_URL')}}" + "/marketplace";
                     if (counter >= 45) {
                       window.location.href = redirect_url;
                     }

@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             'name' => $user->full_name,
             'description' =>' Web Member ID: '.$user->id.''
         ]);
+        // Cookie::queue('is_fdc_member', $user->id, 45000);
 
 
         event(new Registered($user));

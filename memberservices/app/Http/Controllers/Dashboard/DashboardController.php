@@ -9,7 +9,7 @@ use App\Models\EmailContent;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Cashier;
-
+// use Illuminate\Support\Facades\Cookie;
 
 use Illuminate\Support\Facades\Log;
 
@@ -24,6 +24,7 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
         $subscription = $user->subscription('default');
+        // Cookie::queue('is_fdc_member', $user->id, 45000);
         if ($subscription) {
             $redirect_url = env('ACC_MARKETPLACE_URL') . '?cvt=' . $user->CVT;
             return redirect($redirect_url);
@@ -72,7 +73,7 @@ class DashboardController extends Controller
         }
 
         $invoices = $user->invoicesIncludingPending();
-
+        // Cookie::queue('is_fdc_member', $user->id, 45000);
         return view('dashboard')->with('subscription',$subscription)->with('invoices',$invoices)->with('user',$user);
     }
 

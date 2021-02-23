@@ -14,6 +14,9 @@ class TailwindsCSS_Menu_Walker extends Walker_Nav_Menu {
         } else {
             $output .= "<li class='" .  $active_class . "'>";
         }
+        // if (isset($_COOKIE['is_fdc_member']) && $item->url === 'https://fdc.enjoymydeals.com/') {
+        //     $item->url = 'HK';
+        // }
 
         $output .= '<a target="'.$item->target.'" class="font-light uppercase text-xs xl:text-sm tracking-wider text-white hover:text-c-purple-lighter transition duration-150 ease-in-out py-3 '.$modal_class.'" href="' . $item->url . '">';
         // if ($item->url && $item->url != '#') {

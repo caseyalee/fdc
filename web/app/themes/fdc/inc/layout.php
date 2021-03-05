@@ -160,8 +160,10 @@ function site_footer() {
                 <div>&copy; <?php echo date('Y'); ?> <?php echo get_bloginfo( $show = 'name', $filter = 'raw' ); ?>. All Rights Reserved.</div>
                 <div>
                     <?php $footer_menu_items = wp_get_nav_menu_items('footer-menu');
-                    foreach ($footer_menu_items as $menu_item) {
-                        echo '<a target="'.$menu_item->target.'" href="'.$menu_item->url.'">'.$menu_item->title.'</a>&nbsp;';
+                    if ($footer_menu_items) {
+                        foreach ($footer_menu_items as $menu_item) {
+                            echo '<a target="'.$menu_item->target.'" href="'.$menu_item->url.'">'.$menu_item->title.'</a>&nbsp;';
+                        }
                     }
                     ?>
                 </div>

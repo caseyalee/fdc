@@ -112,15 +112,10 @@
 
                 elseif( get_row_layout() == 'html_code' ):
 
-                    echo '<div class="container py-6 lg:py-10 xl:py-12">';
+                    echo '<div class="container max-w-7xl lg:-ml-8">';
 
-                    $purgecss = '<div class="prose max-w-7xl prose-lg py-6 lg:py-10 xl:py-12"><table><tbody><tr><td></td><th></th></tr></tbody></table></div>';
                     $code = get_sub_field('code');
-                    $code = str_replace("<i class=\"fa fa-times\"></i>", "<i style=\"color:red\" class=\"fa fa-times\"></i>", $code);
-                    $code = str_replace("<i class=\"fa fa-check\"></i>", "<i style=\"color:green\" class=\"fa fa-check\"></i>", $code);
-                    echo '<div class="prose max-w-7xl prose-lg">';
                     echo apply_filters('the_content', $code);
-                    echo '</div>';
 
                     echo '</div>';
 

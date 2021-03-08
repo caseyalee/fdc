@@ -6,6 +6,7 @@ let Slick = require('slick-carousel');
 
 const magnificPopup = require('magnific-popup');
 const Formstone = require('formstone');
+const superfish = require('superfish');
 
 require('formstone/dist/js/navigation.js');
 require('formstone/dist/js/background.js');
@@ -32,6 +33,13 @@ jQuery(document).ready(function($) {
     //         $('#sidemenu').css({backgroundColor: 'rgba(12%, 4%, 14%, 0.95)'});
     //     }
     // });
+
+    $('ul.mainmenu').superfish({
+      delay:       0,
+      animation:   {opacity:'show',height:'show'},
+      speed:       'fast',
+      autoArrows:  false
+    });
 
     // navtoggle
     $("#mobilenav").navigation({

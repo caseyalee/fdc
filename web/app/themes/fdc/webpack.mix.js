@@ -115,6 +115,7 @@ if (mix.inProduction()) {
             './inc/layout.php',
             './inc/TailwindsCSS_Menu_Walker.php',
             './page-templates/*.php',
+            './postcss-save.html',
             './loops/layout_builder.php',
             './assets/**/*.blade.php',
             './assets/**/*.html',

@@ -35,6 +35,7 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "jquery": "^3.4.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "superfish": "^1.7.10"
   }
 }

@@ -10,15 +10,17 @@ class TailwindsCSS_Menu_Walker extends Walker_Nav_Menu {
 
         $tmp = '<li class="px-6 btn">';
         if ($top_level) {
-            $output .= "<li class='whitespace-no-wrap px-4 xl:px-8 " .  $active_class .' '.  $btn_class . "'>";
+            $parent_class = ($args->walker->has_children) ? 'parent-menu-item' : 'top-menu-item';
+            $output .= "<li class='whitespace-no-wrap px-4 xl:px-8 py-10 " .  $active_class .' '.  $btn_class . ' '. $parent_class ."'>";
+            $output .= '<a target="'.$item->target.'" class="font-light uppercase text-xs xl:text-sm tracking-wider text-white hover:text-c-purple-lighter transition duration-150 ease-in-out py-3 '.$modal_class.'" href="' . $item->url . '">';
         } else {
             $output .= "<li class='" .  $active_class . "'>";
+            $output .= '<a target="'.$item->target.'" class="font-light text-xs xl:text-sm tracking-wider" href="' . $item->url . '">';
         }
         // if (isset($_COOKIE['is_fdc_member']) && $item->url === 'https://fdc.enjoymydeals.com/') {
         //     $item->url = 'HK';
         // }
 
-        $output .= '<a target="'.$item->target.'" class="font-light uppercase text-xs xl:text-sm tracking-wider text-white hover:text-c-purple-lighter transition duration-150 ease-in-out py-3 '.$modal_class.'" href="' . $item->url . '">';
         // if ($item->url && $item->url != '#') {
         //     $output .= '<a class="font-light uppercase text-white hover:text-c-purple-light transition duration-150 ease-in-out py-3" href="' . $item->url . '">';
         // } else {
@@ -35,7 +37,7 @@ class TailwindsCSS_Menu_Walker extends Walker_Nav_Menu {
         $output .= '</a>';
 
         if ($args->walker->has_children) {
-            $output .= '<i class="caret fa fa-angle-down"></i>';
+            $output .= '<i class="caret fa fa-angle-down text-white"></i>';
         }
     }
 }

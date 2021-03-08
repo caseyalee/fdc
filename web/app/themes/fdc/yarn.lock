@@ -4422,6 +4422,11 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jquery@>=1.8:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
+
 jquery@^3.4.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
@@ -7155,6 +7160,13 @@ stylehacks@^4.0.0:
     browserslist "^4.0.0"
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
+
+superfish@^1.7.10:
+  version "1.7.10"
+  resolved "https://registry.yarnpkg.com/superfish/-/superfish-1.7.10.tgz#94400c5683b0cc87215c6247f26c27890990bc9e"
+  integrity sha512-4O2ySFEtu9AEmYy4gkRl2ifHPwzR1RSQBTpFedpR2nv8qxhx3lEdotHvxKGApHdjmffJuB/Oj5wflHJh1bnMIw==
+  dependencies:
+    jquery ">=1.8"
 
 supports-color@^2.0.0:
   version "2.0.0"

@@ -20,6 +20,50 @@ body {
     font-family: 'proxima';
 }
 
+.mainmenu-mobile {
+  li.parent-menu-item {
+    position: relative;
+    > ul {
+      padding: 20px 0;
+    }
+  }
+}
+
+.mainmenu-desktop {
+  li.parent-menu-item {
+    position: relative;
+    > ul {
+      display: none;
+      position: absolute;
+      background: #fff;
+      padding: 10px 20px;
+      text-align: left;
+      top: 100px;
+      left: 0;
+      li {
+        a {
+          color: $c-purple-darker;
+          padding: 6px 0;
+          display: block;
+          &:hover {
+            color: $c-purple-light;
+          }
+        }
+      }
+    }
+    &:hover,&.sfHover {
+      > ul {
+        display: block;
+      }
+    }
+    .caret {
+      position: relative;
+      margin-left: 4px;
+      opacity: 0.35;
+    }
+  }
+}
+
 #mobilenav {
     @media (min-width: 1024px) {
         display:none;

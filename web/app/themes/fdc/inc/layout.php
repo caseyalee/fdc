@@ -12,6 +12,7 @@ function site_header() { ?>
             'theme_location'  => 'primary_header',
             'container'       => 'div',
             'container_class' => 'mobile-nav',
+            'menu_class'      => 'mainmenu mainmenu-mobile',
             'walker' => new TailwindsCSS_Menu_Walker(),
         ));
         ?>
@@ -103,7 +104,7 @@ function site_header() { ?>
                 		'theme_location'  => 'primary_header',
                 		'container'       => 'div',
                 		'container_class' => 'navigation flex-grow',
-                        'menu_class'      => 'hidden lg:flex justify-end items-center h-16 lg:h-20 text-center',
+                        'menu_class'      => 'mainmenu mainmenu-desktop hidden lg:flex justify-end items-center h-16 lg:h-20 text-center',
                         'walker' => new TailwindsCSS_Menu_Walker(),
                 	) );
                     ?>

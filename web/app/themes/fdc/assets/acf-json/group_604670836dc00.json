@@ -63,9 +63,9 @@
                 "id": ""
             },
             "choices": {
-                "acceptable": "Acceptable",
-                "compatible": "Compatible",
-                "incompatible": "Incompatible"
+                "-1": "-1",
+                "0": "0",
+                "+1": "+1"
             },
             "allow_null": 0,
             "default_value": "",
@@ -86,9 +86,9 @@
                 "id": ""
             },
             "choices": {
-                "acceptable": "Acceptable",
-                "compatible": "Compatible",
-                "incompatible": "Incompatible"
+                "-1": "-1",
+                "0": "0",
+                "+1": "+1"
             },
             "allow_null": 0,
             "default_value": "",
@@ -109,9 +109,9 @@
                 "id": ""
             },
             "choices": {
-                "acceptable": "Acceptable",
-                "compatible": "Compatible",
-                "incompatible": "Incompatible"
+                "-1": "-1",
+                "0": "0",
+                "+1": "+1"
             },
             "allow_null": 0,
             "default_value": "",
@@ -148,5 +148,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1615230010
+    "modified": 1615502046
 }

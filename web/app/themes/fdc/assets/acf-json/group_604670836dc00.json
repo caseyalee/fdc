@@ -40,8 +40,8 @@
                 "id": ""
             },
             "choices": {
-                "acceptable": "Acceptable",
                 "compatible": "Compatible",
+                "acceptable": "Acceptable",
                 "incompatible": "Incompatible"
             },
             "allow_null": 0,
@@ -148,5 +148,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1615502046
+    "modified": 1615502138
 }

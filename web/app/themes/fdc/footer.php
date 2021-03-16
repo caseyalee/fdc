@@ -11,6 +11,6 @@
 <?php do_action( 'theme_footer' ); ?>
 
 <?php wp_footer(); ?>
-
+<?php the_field('additional_footer_scripts','option'); ?>
 </body>
 </html>

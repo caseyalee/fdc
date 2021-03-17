@@ -7,6 +7,9 @@
     }
     ul.gform_fields li.gfield {
         padding-left: 0;
+        &:before {
+          display: none;
+        }
     }
     li.gfield.gfield_error {
         background: none;

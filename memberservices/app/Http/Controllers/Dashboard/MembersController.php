@@ -13,4 +13,10 @@ class MembersController extends Controller
         return view('manage-members')->with('users',$users);
     }
 
+    public function hubSpotSync()
+    {
+        \App\Jobs\SyncHubSpotJob::dispatchSync();
+        return redirect()->route('admin-members')->with('status', 'HubSpot Sync Complete');
+    }
+
 }

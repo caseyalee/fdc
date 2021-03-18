@@ -54,6 +54,7 @@ Route::prefix('admin')->middleware(['role:admin'])->group(function () {
     Route::get('/emails/preview/{email}', [EmailContentController::class, 'preview'])->name('admin-email-preview');
     Route::get('/changelog', '\EmtiazZahid\GitLogLaravel\GitLogLaravelController@index')->name('admin-changelog');
     Route::get('/members', [MembersController::class, 'index'])->name('admin-members');
+    Route::get('/members/hubspot', [MembersController::class, 'hubSpotSync'])->name('admin-members-hubspot');
 });
 
 require __DIR__.'/auth.php';

@@ -13,6 +13,7 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
+            @captcha
 
             <div class="lg:flex lg:space-x-4 items-center">
                 <!-- First Name -->

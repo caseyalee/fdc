@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Emtiazzahid\GitLogLaravel\GitLogServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...

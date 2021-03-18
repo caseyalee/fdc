@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "albertcht/invisible-recaptcha": "^1.9",
         "creativeorange/gravatar": "~1.0",
         "doctrine/dbal": "^3.0",
         "emtiazzahid/git-log-laravel": "^0.1.0",

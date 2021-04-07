@@ -131,7 +131,7 @@ class Walker_Category_Radios extends Walker {
     }
 }
 
-function my_remove_wp_seo_meta_box() {
-    remove_meta_box('wpseo_meta', 'brand', 'normal');
-}
-add_action('add_meta_boxes', 'my_remove_wp_seo_meta_box', 100);
+// function my_remove_wp_seo_meta_box() {
+//     remove_meta_box('wpseo_meta', 'brand', 'normal');
+// }
+// add_action('add_meta_boxes', 'my_remove_wp_seo_meta_box', 100);

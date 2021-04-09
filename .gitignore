@@ -13,6 +13,7 @@ web/app/uploads/*
 !web/app/plugins/wp-all-import-pro/
 !web/app/plugins/wpai-acf-add-on/
 !web/app/plugins/wp-all-export-pro/
+!web/app/plugins/fdc-algolia-search/
 
 # WordPress
 web/wp

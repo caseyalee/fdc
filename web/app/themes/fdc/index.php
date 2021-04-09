@@ -24,12 +24,12 @@
         <?php if ( have_posts() ) : ?>
             <div class="lg:flex flex-wrap equalize" data-equalize-options='{"target":".entry-title"}'>
         	<?php while ( have_posts() ) : the_post(); ?>
-                <div class="lg:w-1/2 lg:px-6">
+                <div class="md:w-1/2 lg:w-1/3 lg:px-6">
             		<?php do_action( 'theme_before_entry' ); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('prose max-w-7xl prose-lg'); ?>>
 
                         <header class="entry-header">
-                            <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+                            <?php the_title( sprintf( '<h3 class="entry-title flex items-end"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
                         </header><!-- .entry-header -->
 
                         <?php

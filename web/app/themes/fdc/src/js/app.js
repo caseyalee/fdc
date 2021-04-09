@@ -45,12 +45,19 @@ jQuery(document).ready(function($) {
     $("#mobilenav").navigation({
         type: "overlay",
         gravity: "right",
-        maxWidth: "959px",
+        maxWidth: "1024px",
         label: false
     });
     $( "#hidemenu" ).on( "click", function(event) {
         $("#mobilenav").navigation("close");
         event.preventDefault();
+    });
+
+    $(".fei-sidebar").navigation({
+        type: "overlay",
+        gravity: "left",
+        maxWidth: "1279px",
+        label: false
     });
 
     $('.background').background();

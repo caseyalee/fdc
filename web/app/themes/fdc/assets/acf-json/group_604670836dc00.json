@@ -3,30 +3,6 @@
     "title": "Brand Options",
     "fields": [
         {
-            "key": "field_604670b50b8fc",
-            "label": "Image\/Icon",
-            "name": "brand_image",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_604673fb87992",
             "label": "Overall Score",
             "name": "overall_score",
@@ -35,7 +11,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "100",
                 "class": "",
                 "id": ""
             },
@@ -148,5 +124,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1615502138
+    "modified": 1617949219
 }

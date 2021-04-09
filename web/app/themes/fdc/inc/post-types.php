@@ -44,6 +44,7 @@ $brands = new CPT(
      'menu_icon' => get_stylesheet_directory_uri().'/assets/img/cross-icon.svg', // https://developer.wordpress.org/resource/dashicons
      'has_archive' => true,
      'public' => true,
+     'publicly_queryable' => false,
  )
 );
 
@@ -51,12 +52,13 @@ $brands = new CPT(
 // Brands Types Taxonomy
 $brands->register_taxonomy(
     array(
-       'taxonomy_name' => 'type',
+       'taxonomy_name' => 'brand-type',
        'singular' => 'Type',
        'plural' => 'Types',
     ),array(
         'hierarchical' => true,
-        'publicly_queryable' => true,
+        'public' => true,
+        'publicly_queryable' => false,
     )
 );
 
@@ -64,23 +66,25 @@ $brands->register_taxonomy(
 // Brands Categories Taxonomy
 $brands->register_taxonomy(
     array(
-       'taxonomy_name' => 'category',
+       'taxonomy_name' => 'brand-category',
        'singular' => 'Category',
        'plural' => 'Categories'
     ),array(
         'hierarchical' => true,
-        'publicly_queryable' => true,
+        'public' => true,
+        'publicly_queryable' => false,
     )
 );
 // Brands Keywords Taxonomy
 $brands->register_taxonomy(
     array(
-       'taxonomy_name' => 'keyword',
+       'taxonomy_name' => 'brand-keywords',
        'singular' => 'Tag',
        'plural' => 'Tags'
     ),array(
         'hierarchical' => false,
-        'publicly_queryable' => true,
+        'public' => true,
+        'publicly_queryable' => false,
     )
 );
 

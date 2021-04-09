@@ -43,9 +43,10 @@
     "wpackagist-plugin/admin-menu-editor":"1.9.9",
     "wpackagist-plugin/intuitive-custom-post-order":"3.1.2.1",
     "wpackagist-plugin/wp-mail-smtp":"2.7.0",
-    "wpackagist-plugin/duracelltomi-google-tag-manager":"1.11.6",
+    "wpackagist-plugin/duracelltomi-google-tag-manager":"1.12.1",
     "wpackagist-plugin/user-switching":"1.5.6",
-    "stripe/stripe-php": "^7.70"
+    "stripe/stripe-php": "^7.70",
+    "algolia/algoliasearch-client-php": "^2.7"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.4",

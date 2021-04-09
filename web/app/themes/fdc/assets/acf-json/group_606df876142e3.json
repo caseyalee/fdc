@@ -32,7 +32,7 @@
             {
                 "param": "taxonomy",
                 "operator": "==",
-                "value": "category"
+                "value": "brand-category"
             }
         ]
     ],
@@ -44,5 +44,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1617819916
+    "modified": 1617950882
 }

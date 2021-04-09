@@ -121,6 +121,7 @@ if (mix.inProduction()) {
             './assets/**/*.html',
             './src/js/**/*.js',
             './src/js/**/*.vue',
+            './assets/js/search/search.js',
         ],
         whitelist: WhiteListClasses,
         whitelistPatterns: [

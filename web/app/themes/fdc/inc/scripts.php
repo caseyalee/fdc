@@ -13,6 +13,22 @@ function theme_scripts() {
     $theme_min_js = '/assets/js/app.js';
     wp_enqueue_script( 'dash-js', get_stylesheet_directory_uri().$theme_min_js, array('jquery'), filemtime( get_stylesheet_directory().$theme_min_js ), true );
 
+      // instantsearch.production.min.js
+      // instantsearch.development.js
+      wp_register_script('instantsearch-js', get_template_directory_uri() . '/assets/js/search/instantsearch.development.js', array('jquery'), NULL, true);
+      wp_register_script('algoliasearch-js', get_template_directory_uri() . '/assets/js/search/algoliasearch-lite.umd.js', array('jquery'), NULL, true);
+      wp_register_script('search-js', get_template_directory_uri() . '/assets/js/search/search.js', array('jquery','algoliasearch-js','instantsearch-js'), 20210119150014, true);
+
+      if (is_page('fei')) {
+        wp_enqueue_script('search-js');
+        wp_localize_script( 'search-js', 'fdc_algolia_index',
+            array( 
+                'services' => env('ALGOLIA_BRANDS_INDEX'),
+                'keywords' => env('ALGOLIA_KW_INDEX'),
+            )
+        );
+      }
+
 }
 add_action( 'wp_enqueue_scripts', 'theme_scripts' );
 

@@ -16,9 +16,19 @@ module.exports = {
     colors: {
       black: colors.black,
       white: colors.white,
-      gray: colors.gray,
       red: colors.red,
       transparent: colors.transparent,
+      gray: {
+        '100': '#f1f1f1',
+        '200': '#eeeeee',
+        '300': '#e0e0e0',
+        '400': '#bdbdbd',
+        '500': '#9e9e9e',
+        '600': '#757575',
+        '700': '#616161',
+        '800': '#424242',
+        '900': '#212121',
+      },
     },
     fontWeight: {
       light: 300,

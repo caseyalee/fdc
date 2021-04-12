@@ -3,6 +3,10 @@ const algolia_keywords_index = fdc_algolia_index.keywords;
 
 const urlParams = new URLSearchParams(window.location.search);
 const kwparam = urlParams.get('keyword') || false;
+const typeparam = urlParams.get('type') || false;
+const categoryparam = urlParams.get('category') || false;
+const overallscoreparam = urlParams.get('overall_score') || false;
+
 let firstLoad = true;
 
 const search = instantsearch({
@@ -10,11 +14,31 @@ const search = instantsearch({
   searchClient: algoliasearch('2NJZ5IVNHJ', '84972973d7b9450816ff2660ac900721'),
   searchFunction(helper) {
     const page = helper.getPage();
-    if (firstLoad && kwparam) {
-      helper.setQuery(kwparam);
+    console.log(helper);
+    if (firstLoad) {
+
+      if (overallscoreparam) {
+        helper.addDisjunctiveFacetRefinement('overall_score', overallscoreparam);
+      }
+
+      if (categoryparam) {
+        helper.addDisjunctiveFacetRefinement('categories', categoryparam);
+      }
+
+      if (typeparam) {
+        helper.addDisjunctiveFacetRefinement('types', typeparam);
+      }
+
+      if (kwparam) {
+        helper.setQuery(kwparam);
+      }
+
       helper.search();
+
     } else {
+
       helper.search();
+      
     }
     firstLoad = false;
   }
@@ -31,28 +55,9 @@ function sortTypes(a, b) {
 }
 
 
-// const search = instantsearch({
-//   indexName: algolia_brands_index,
-//   searchClient: algoliasearch('2NJZ5IVNHJ', '84972973d7b9450816ff2660ac900721'),
-//   searchFunction(helper) {
-//     if (kwparam) {
-//       const page = helper.getPage(); // Retrieve the current page
-//       helper.setQuery(kwparam).setPage(page);
-//     }
-//     helper.search();
-//   }
-// });
 
 const SelectedCategory = window.location.hash ? [decodeURIComponent(window.location.hash.substring(1))] : [];
 
-// const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
-//   insightsClient: window.aa,
-// });
-
-// search.use(insightsMiddleware);
-
-// const userToken = 'WP_USER';
-// window.aa('setUserToken', userToken);
 
 search.addWidgets([
 
@@ -60,11 +65,6 @@ search.addWidgets([
     container: '#searchbox',
     placeholder: 'Search Brands by Keyword',
   }),
-
-
-  // instantsearch.widgets.poweredBy({
-  //   container: '#powered-by',
-  // }),
 
 
   instantsearch.widgets.clearRefinements({
@@ -87,15 +87,6 @@ search.addWidgets([
     attribute: 'categories',
     sortBy: ['name:asc'],
     limit: 50,
-    // transformItems: function(items) {
-    //   console.log(items);
-    //   return items.map(function(item) {
-    //     // do something with the item, change the label or `highlighted`
-    //     return item;
-    //   });
-    //   // if you want to sort them differently after, you can do `.sort`
-    //   // if you don't want specific items, you can `.filter` them out
-    // },
     templates: {
       item: `
       <li data-refine-value="{{value}}" class="ais-RefinementList-label">

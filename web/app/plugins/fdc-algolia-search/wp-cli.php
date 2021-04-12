@@ -50,7 +50,7 @@ class Algolia_Command {
 
         // Copy the search config from indexA to indexB
         // $this->algolia->copyIndex('dev_fdc_brands',$this->algolia_index);
-        // WP_CLI::success("$count posts indexed in Algolia");
+        // WP_CLI::success("copied settings from dev_fdc_brands to ".$this->algolia_index);
         // exit;
 
         $index = $this->algolia->initIndex($this->algolia_index);

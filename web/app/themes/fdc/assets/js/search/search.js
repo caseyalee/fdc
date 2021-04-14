@@ -64,7 +64,6 @@ function sortScores(a, b) {
 }
 
 
-
 const SelectedCategory = window.location.hash ? [decodeURIComponent(window.location.hash.substring(1))] : [];
 
 
@@ -88,9 +87,6 @@ search.addWidgets([
     },
   }),
 
-
-
-
   instantsearch.widgets.refinementList({
     container: '#categories-list',
     attribute: 'categories',
@@ -112,6 +108,7 @@ search.addWidgets([
       categories: SelectedCategory,
     },
   }),
+
 
   instantsearch.widgets.refinementList({
     container: '#types-list',
@@ -173,6 +170,7 @@ search.addWidgets([
                   <div class="text-center">
                     {{#categorydata}}
                       <span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>
+                      <span class="text-sm text-gray-600 leading-none inline-block" style="max-width:200px;display:inline-block">{{name}}</span>
                     {{/categorydata}}
                   </div>
                 </div>
@@ -211,6 +209,16 @@ search.addWidgets([
   instantsearch.widgets.pagination({
     container: '#pagination',
   }),
+
+  instantsearch.widgets.hitsPerPage({
+    container: '#hitsperpage',
+    items: [
+      { label: '12', value: 12, default: true },
+      { label: '24', value: 24 },
+      { label: '30', value: 30 },
+      { label: '60', value: 60 },
+    ],
+  })
 
 ]);
 

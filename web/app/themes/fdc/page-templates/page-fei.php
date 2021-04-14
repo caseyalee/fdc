@@ -39,6 +39,10 @@ get_header(); ?>
       </div>
       <div class="fei-index mt-4" id="brandListings"></div>
       <div id="pagination"></div>
+      <div class="flex flex-nowrap justify-center items-center space-x-2">
+        <div>Results per page:</div>
+        <div id="hitsperpage"></div>
+      </div>
     </div>
   </div>
 

@@ -22,7 +22,7 @@ get_header(); ?>
         <div class="filter mb-8">
           <h3 class="d-block mb-2 font-semibold text-xl">FEI / Score</h3>
           <div id="scores-list"></div>
-          <div class="text-sm pt-2 text-gray-600">Compatible brands earn our highest of three ratings regarding compatibility with the Christian values and worldview.  This is followed by an Acceptable rating and then Incompatible.</div>
+          <div class="text-sm pt-2 text-gray-600"><?php the_field('fei_sidebar_text'); ?></div>
         </div>
         <div class="filter mb-8">
           <h3 class="d-block mb-2 font-semibold text-xl">Subcategory</h3>

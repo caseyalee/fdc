@@ -3,6 +3,59 @@
     "title": "FEI Index Page Settings",
     "fields": [
         {
+            "key": "field_60775339d488d",
+            "label": "Sidebar",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6077535ad488e",
+            "label": "Sidebar Text",
+            "name": "fei_sidebar_text",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_60775329d488c",
+            "label": "Bottom CTA",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
             "key": "field_60768e6ef84f0",
             "label": "CTA Boxes",
             "name": "fei_cta_boxes",
@@ -108,5 +161,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1618382545
+    "modified": 1618432893
 }

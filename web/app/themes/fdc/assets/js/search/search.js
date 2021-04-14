@@ -170,7 +170,6 @@ search.addWidgets([
                   <div class="text-center">
                     {{#categorydata}}
                       <span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>
-                      <span class="text-sm text-gray-600 leading-none inline-block" style="max-width:200px;display:inline-block">{{name}}</span>
                     {{/categorydata}}
                   </div>
                 </div>

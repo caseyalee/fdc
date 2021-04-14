@@ -109,13 +109,13 @@ class FdcAlgoliaSearch {
 
                 // Types Taxonomy
                 $type = array_map(function (WP_Term $term) use ($post) {
-                    return $term->name;
+                    return htmlspecialchars_decode($term->name);
                 }, wp_get_post_terms($post->ID, 'brand-type'));
 
 
                 // Categories Taxonomy
                 $categories = array_map(function (WP_Term $term) use ($post) {
-                    return $term->name;
+                    return htmlspecialchars_decode($term->name);
                 }, wp_get_post_terms($post->ID, 'brand-category'));
 
                 $category_data = array_map(function (WP_Term $term) use ($post) {
@@ -124,7 +124,7 @@ class FdcAlgoliaSearch {
                        $category_icon = 'default';
                     }
                     return [
-                        'name' => $term->name,
+                        'name' => htmlspecialchars_decode($term->name),
                         'icon' => $category_icon,
                         'order' => (int) $term->term_order
                     ];

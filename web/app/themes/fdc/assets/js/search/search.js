@@ -141,22 +141,45 @@ search.addWidgets([
     templates: {
       empty: '<div class="pt-5"><strong>No results for <q>{{ query }}</q></strong></div>',
       item: `
-          <article class="listing">
-              <div class="top py-5">
-                <p class="text-center font-semibold text-base lg:text-xl text-gray-600 hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
-              </div>
-              <div class="inner px-4 pb-8 flex justify-center">
-                <div>
-                  {{#helpers.highlight}}{ "attribute": "excerpt" }{{/helpers.highlight}}
-                  {{#categorydata}}<span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>{{/categorydata}}
+          <article class="brand-card">
+            <div class="brand-card-inner">
+              <div class="front flex flex-wrap">
+                <div class="top self-start w-full px-3 py-5 lg:px-5">
+                  <p class="text-center font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 whitespace-no-wrap hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
+                </div>
+                <div class="inner px-4 pb-8 self-center w-full flex justify-center">
+                  <div>
+                    {{#helpers.highlight}}{ "attribute": "excerpt" }{{/helpers.highlight}}
+                    {{#categorydata}}<span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>{{/categorydata}}
+                  </div>
+                </div>
+                <div class="card-bottom score-{{overall_score}} w-full self-end">
+                  <span class="flex items-center">
+                    <img src="/app/themes/fdc/assets/img/icon-{{overall_score}}.png" align="left" alt="icon" />
+                    <span class="text-white uppercase text-sm ml-2">{{overall_score}}</span>
+                  </span>
                 </div>
               </div>
-              <div class="bottom score-{{overall_score}}">
-                <span class="flex items-center">
-                  <img src="/app/themes/fdc/assets/img/icon-{{overall_score}}.png" align="left" alt="icon" />
-                  <span class="text-white uppercase text-sm ml-2">{{overall_score}}</span>
-                </span>
+              <div class="back flex flex-wrap">
+                <div class="top self-start w-full px-3 py-5 lg:px-5">
+                  <p class="font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 whitespace-no-wrap hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
+                  <p class="text-sm text-gray-400 hit-title">{{#categorydata}}{{name}}{{/categorydata}}</p>
+                </div>
+                <div class="inner px-3 lg:px-5 pb-8 self-center w-full flex justify-center">
+                  <ul class="w-full">
+                    <li class="border-b border-gray-300 text-gray-600 text-xs md:text-base 2xl:text-lg leading-normal lg:leading-6 xl:leading-8 flex"><span class="w-3/4">Marketplace Score:</span> <strong class="w-1/4">{{marketplace_score}}</strong></li>
+                    <li class="border-b border-gray-300 text-gray-600 text-xs md:text-base 2xl:text-lg leading-normal lg:leading-6 xl:leading-8 flex"><span class="w-3/4">Workplace Score:</span> <strong class="w-1/4">{{workplace_score}}</strong></li>
+                    <li class="border-b border-gray-300 text-gray-600 text-xs md:text-base 2xl:text-lg leading-normal lg:leading-6 xl:leading-8 flex"><span class="w-3/4">Culture Score:</span> <strong class="w-1/4">{{culture_score}}</strong></li>
+                  </ul>
+                </div>
+                <div class="card-bottom score-{{overall_score}} w-full self-end">
+                  <span class="flex items-center">
+                    <img src="/app/themes/fdc/assets/img/icon-{{overall_score}}.png" align="left" alt="icon" />
+                    <span class="text-white uppercase text-sm ml-2">{{overall_score}}</span>
+                  </span>
+                </div>
               </div>
+            </div>
           </article>
       `,
     },

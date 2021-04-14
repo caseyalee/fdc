@@ -45,7 +45,7 @@ class FdcAlgoliaSearch {
      * Define plugin Action Hooks
     */
     public function add_actions() {
-        // add_action('save_post_brand', array( $this, 'algolia_update_brand_post' ), 10, 3);
+        add_action('save_post_brand', array( $this, 'algolia_update_brand_post' ), 10, 3);
     }
 
 

@@ -14,7 +14,6 @@ const search = instantsearch({
   searchClient: algoliasearch('2NJZ5IVNHJ', '84972973d7b9450816ff2660ac900721'),
   searchFunction(helper) {
     const page = helper.getPage();
-    console.log(helper);
     if (firstLoad) {
 
       if (overallscoreparam) {
@@ -48,6 +47,16 @@ const search = instantsearch({
 function sortTypes(a, b) {
   var ordering = {}, // map for efficient lookup of sortIndex
       sortOrder = ['Eat','Work','Play'];
+  for (var i=0; i<sortOrder.length; i++)
+      ordering[sortOrder[i]] = i;
+
+  return (ordering[a.name] - ordering[b.name]) || a.name.localeCompare(b.name);
+}
+
+
+function sortScores(a, b) {
+  var ordering = {}, // map for efficient lookup of sortIndex
+      sortOrder = ['compatible','acceptable','incompatible'];
   for (var i=0; i<sortOrder.length; i++)
       ordering[sortOrder[i]] = i;
 
@@ -122,6 +131,19 @@ search.addWidgets([
   instantsearch.widgets.refinementList({
     container: '#scores-list',
     attribute: 'overall_score',
+    sortBy: sortScores,
+    transformItems(items) {
+      return items.map(item => {
+        console.log(item.label)
+        if (item.label == 'compatible') {
+          item.label = 'compatible (best)'
+        }
+        // item._highlightResult.fakeName = {
+        //   value: item._highlightResult['label'].value.toLocaleUpperCase(),
+        // };
+        return item;
+      });
+    },
     templates: {
       item: `
       <li data-refine-value="{{value}}" class="ais-RefinementList-label">
@@ -148,9 +170,10 @@ search.addWidgets([
                   <p class="text-center font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 whitespace-no-wrap hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
                 </div>
                 <div class="inner px-4 pb-8 self-center w-full flex justify-center">
-                  <div>
-                    {{#helpers.highlight}}{ "attribute": "excerpt" }{{/helpers.highlight}}
-                    {{#categorydata}}<span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>{{/categorydata}}
+                  <div class="text-center">
+                    {{#categorydata}}
+                      <span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>
+                    {{/categorydata}}
                   </div>
                 </div>
                 <div class="card-bottom score-{{overall_score}} w-full self-end">

@@ -83,6 +83,10 @@ class SyncHubSpotJob implements ShouldQueue
                         'property' => 'date_joined_marketplace',
                         'value' => $user_created_date,
                     ],
+                    [
+                        'property' => 'cvt_access',
+                        'value' => $user->cvt,
+                    ],
                 );
 
                 $response = \HubSpot::contacts()->createOrUpdate($user->email,$hubspot_data);

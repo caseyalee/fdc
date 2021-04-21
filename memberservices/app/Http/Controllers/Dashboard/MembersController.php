@@ -20,6 +20,12 @@ class MembersController extends Controller
         return redirect()->route('admin-members')->with('status', 'HubSpot Sync Complete');
     }
 
+    public function EditProfile()
+    {
+        $user = auth()->user();
+        return view('user-profile')->with('user',$user);
+    }
+
     public function profileUpdate(Request $request)
     {
         $user = User::findOrFail($request->user);

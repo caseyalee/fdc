@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/marketplace', [DashboardController::class, 'marketplace'])->name('marketplace');
     Route::post('/user/update/{user}', [MembersController::class, 'profileUpdate'])->name('user-profile-update');
+    Route::get('/user/profile', [MembersController::class, 'EditProfile'])->name('user-profile');
 
 });
 

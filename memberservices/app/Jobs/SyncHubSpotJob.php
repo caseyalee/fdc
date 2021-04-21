@@ -61,35 +61,39 @@ class SyncHubSpotJob implements ShouldQueue
                 $hubspot_data = array(
                     [
                         'property' => 'firstname',
-                        'value' => $user->first_name
+                        'value' => $user->first_name,
                     ],
                     [
                         'property' => 'lastname',
-                        'value' => $user->last_name
+                        'value' => $user->last_name,
                     ],
                     [
                         'property' => 'address',
-                        'value' => $user->address1 . ' ' . $user->address2
+                        'value' => $user->address1 . ' ' . $user->address2,
                     ],
                     [
                         'property' => 'city',
-                        'value' => $user->city
+                        'value' => $user->city,
                     ],
                     [
                         'property' => 'state',
-                        'value' => $user->state
+                        'value' => $user->state,
                     ],
                     [
                         'property' => 'zip',
-                        'value' => $user->zip
+                        'value' => $user->zip,
+                    ],
+                    [
+                        'property' => 'phone',
+                        'value' => $user->telephone,
                     ],
                     [
                         'property' => 'community_member_',
-                        'value' => 'Yes'
+                        'value' => 'Yes',
                     ],
                     [
                         'property' => 'marketplace_member_',
-                        'value' => 'Yes'
+                        'value' => 'Yes',
                     ],
                     [
                         'property' => 'hs_content_membership_notes',
@@ -105,7 +109,7 @@ class SyncHubSpotJob implements ShouldQueue
                     ],
                     [
                         'property' => 'np__opt_in_for_marketing_emails_from_sign_up_',
-                        'value' => user->pref_marketing_emails,
+                        'value' => $user->pref_marketing_emails,
                     ],
                     [
                         'property' => 'np__opt_in_for_community_newsletter_from_sign_up_',

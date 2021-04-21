@@ -68,6 +68,22 @@ class SyncHubSpotJob implements ShouldQueue
                         'value' => $user->last_name
                     ],
                     [
+                        'property' => 'address',
+                        'value' => $user->address1 . ' ' . $user->address2
+                    ],
+                    [
+                        'property' => 'city',
+                        'value' => $user->city
+                    ],
+                    [
+                        'property' => 'state',
+                        'value' => $user->state
+                    ],
+                    [
+                        'property' => 'zip',
+                        'value' => $user->zip
+                    ],
+                    [
                         'property' => 'community_member_',
                         'value' => 'Yes'
                     ],

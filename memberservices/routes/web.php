@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('billing');
 
     Route::get('/marketplace', [DashboardController::class, 'marketplace'])->name('marketplace');
+    Route::post('/user/update/{user}', [MembersController::class, 'profileUpdate'])->name('user-profile-update');
 
 });
 

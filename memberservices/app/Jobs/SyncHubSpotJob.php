@@ -87,6 +87,18 @@ class SyncHubSpotJob implements ShouldQueue
                         'property' => 'cvt_access',
                         'value' => $user->cvt,
                     ],
+                    [
+                        'property' => 'np__opt_in_for_marketing_emails_from_sign_up_',
+                        'value' => user->pref_marketing_emails,
+                    ],
+                    [
+                        'property' => 'np__opt_in_for_community_newsletter_from_sign_up_',
+                        'value' => $user->pref_newsletter_emails,
+                    ],
+                    [
+                        'property' => 'opt_in_for_sms_',
+                        'value' => $user->pref_sms,
+                    ],
                 );
 
                 $response = \HubSpot::contacts()->createOrUpdate($user->email,$hubspot_data);

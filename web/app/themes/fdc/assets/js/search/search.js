@@ -168,9 +168,7 @@ search.addWidgets([
                 </div>
                 <div class="inner px-4 pb-8 self-center w-full flex justify-center">
                   <div class="text-center">
-                    {{#categorydata}}
-                      <span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{icon}}" alt="category-icon"></span>
-                    {{/categorydata}}
+                      <span class="cat-icon"><img class="mx-auto w-20 md:w-auto" src="{{logo}}" alt="logo"></span>
                   </div>
                 </div>
                 <div class="card-bottom score-{{overall_score}} w-full self-end">

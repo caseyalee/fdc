@@ -29,7 +29,7 @@
             "key": "field_604672ea1f98b",
             "label": "Marketplace Score",
             "name": "score",
-            "type": "button_group",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -38,21 +38,19 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "-1": "-1",
-                "0": "0",
-                "+1": "+1"
-            },
-            "allow_null": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "return_format": "value"
+            "default_value": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": -1,
+            "max": 1,
+            "step": 1
         },
         {
             "key": "field_6046737f1f98c",
             "label": "Workplace Score",
             "name": "workplace_score",
-            "type": "button_group",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -61,21 +59,19 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "-1": "-1",
-                "0": "0",
-                "+1": "+1"
-            },
-            "allow_null": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "return_format": "value"
+            "default_value": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": -1,
+            "max": 1,
+            "step": 1
         },
         {
             "key": "field_604673971f98d",
             "label": "Culture Score",
             "name": "culture_score",
-            "type": "button_group",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -84,15 +80,32 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "-1": "-1",
-                "0": "0",
-                "+1": "+1"
+            "default_value": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": -1,
+            "max": 1,
+            "step": 1
+        },
+        {
+            "key": "field_60902a033ba7e",
+            "label": "Logo",
+            "name": "brand_logo",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
             },
-            "allow_null": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "return_format": "value"
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -124,5 +137,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1617949219
+    "modified": 1620065123
 }

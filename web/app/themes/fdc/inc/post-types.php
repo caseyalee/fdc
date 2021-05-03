@@ -49,6 +49,27 @@ $brands = new CPT(
 );
 
 
+$brands->columns(array(
+    'cb' => '<input type="checkbox" />',
+    'title' => __('Title'),
+    'brand_logo' => __('Logo'),
+    'brand-type' => __('Types'),
+    'categories' => __('Categories'),
+    'brand-keywords' => __('Tags'),
+    'date' => __('Date')
+));
+
+$brands->populate_column('brand_logo', function($column, $post) {
+
+    echo '<img style="width:62px;height:auto" src="' . get_field('brand_logo') . '"/>';
+
+});
+
+$brands->sortable(array(
+    'brand_logo' => array('brand_logo', false),
+));
+
+
 // Brands Types Taxonomy
 $brands->register_taxonomy(
     array(

@@ -118,17 +118,17 @@ class FdcAlgoliaSearch {
                     return htmlspecialchars_decode($term->name);
                 }, wp_get_post_terms($post->ID, 'brand-category'));
 
-                $category_data = array_map(function (WP_Term $term) use ($post) {
+                // $category_data = array_map(function (WP_Term $term) use ($post) {
                     
-                    if (!$category_icon = get_field('category_icon', $term)) {
-                       $category_icon = 'default';
-                    }
-                    return [
-                        'name' => htmlspecialchars_decode($term->name),
-                        'icon' => $category_icon,
-                        'order' => (int) $term->term_order
-                    ];
-                }, wp_get_post_terms($post->ID, 'brand-category'));
+                //     if (!$category_icon = get_field('category_icon', $term)) {
+                //        $category_icon = 'default';
+                //     }
+                //     return [
+                //         'name' => htmlspecialchars_decode($term->name),
+                //         'icon' => $category_icon,
+                //         'order' => (int) $term->term_order
+                //     ];
+                // }, wp_get_post_terms($post->ID, 'brand-category'));
 
 
                 // // Get the primary icon
@@ -171,6 +171,10 @@ class FdcAlgoliaSearch {
 
                 // $category_color = current(array_filter($category_color));
 
+                $logo = get_field('brand_logo',$post->ID);
+                if (!$logo) {
+                    $logo = trailingslashit( get_stylesheet_directory_uri() ).'assets/img/missing.png';
+                }
 
                 // The Data
                 $record = [];
@@ -179,11 +183,12 @@ class FdcAlgoliaSearch {
                 $record['keywords'] = $keywords;
                 $record['categories'] = $categories;
                 $record['types'] = $type;
-                $record['categorydata'] = $category_data;
-                $record['overall_score'] = get_post_meta($post->ID, 'overall_score', true);
-                $record['marketplace_score'] = get_post_meta($post->ID, 'score', true);
-                $record['workplace_score'] = get_post_meta($post->ID, 'workplace_score', true);
-                $record['culture_score'] = get_post_meta($post->ID, 'culture_score', true);
+                // $record['categorydata'] = $category_data;
+                $record['logo'] = $logo;
+                $record['overall_score'] = strtolower(get_field('overall_score', $post->ID));
+                $record['marketplace_score'] = get_field('score', $post->ID);
+                $record['workplace_score'] = get_field('workplace_score', $post->ID);
+                $record['culture_score'] = get_field('culture_score', $post->ID);
                 $record['order'] = $post->menu_order;
 
                 return $record;

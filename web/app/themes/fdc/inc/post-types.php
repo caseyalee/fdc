@@ -54,7 +54,7 @@ $brands->columns(array(
     'title' => __('Title'),
     'brand_logo' => __('Logo'),
     'brand-type' => __('Types'),
-    'categories' => __('Categories'),
+    'brand-category' => __('Categories'),
     'brand-keywords' => __('Tags'),
     'date' => __('Date')
 ));

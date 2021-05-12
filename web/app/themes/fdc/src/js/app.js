@@ -11,6 +11,8 @@ const superfish = require('superfish');
 require('formstone/dist/js/navigation.js');
 require('formstone/dist/js/background.js');
 require('formstone/dist/js/equalize.js');
+require('formstone/dist/js/cookie.js');
+require('formstone/dist/js/tooltip.js');
 
 // $.fn.isInViewport = function() {
 //     var elementTop = $(this).offset().top;
@@ -24,6 +26,32 @@ require('formstone/dist/js/equalize.js');
 
 
 jQuery(document).ready(function($) {
+
+    var hidelegend = $.cookie('hidefeilegend');
+
+    if (!hidelegend) {
+        $('#feilegend').show();
+    } else {
+        $( "#show-fei-legend" ).show();
+    }
+    $("#show-fei-legend").tooltip({
+      direction: "bottom",
+    });
+
+    $( "#hide-fei-legend" ).on( "click", function(event) {
+        $.cookie('hidefeilegend', true);
+        $('#feilegend').fadeOut();
+        $( "#show-fei-legend" ).fadeIn();
+        event.preventDefault();
+    });
+    $( "#show-fei-legend" ).on( "click", function(event) {
+        $.cookie('hidefeilegend', null);
+        $('#show-fei-legend').fadeOut();
+        $('#feilegend').show();
+        $(".fei-sidebar").navigation("close");
+        $(".equalize").equalize("resize");
+        event.preventDefault();
+    });
 
 
     // $(window).on('resize scroll', function() {
@@ -48,6 +76,7 @@ jQuery(document).ready(function($) {
         maxWidth: "1024px",
         label: false
     });
+
     $( "#hidemenu" ).on( "click", function(event) {
         $("#mobilenav").navigation("close");
         event.preventDefault();

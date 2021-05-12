@@ -4,6 +4,8 @@
 
 /*! formstone v1.4.18-1 [background.js] 2020-10-12 | GPL-3.0 License | formstone.it */
 
+/*! formstone v1.4.18-1 [cookie.js] 2020-10-12 | GPL-3.0 License | formstone.it */
+
 /*! formstone v1.4.18-1 [core.js] 2020-10-12 | GPL-3.0 License | formstone.it */
 
 /*! formstone v1.4.18-1 [equalize.js] 2020-10-12 | GPL-3.0 License | formstone.it */
@@ -13,5 +15,7 @@
 /*! formstone v1.4.18-1 [navigation.js] 2020-10-12 | GPL-3.0 License | formstone.it */
 
 /*! formstone v1.4.18-1 [swap.js] 2020-10-12 | GPL-3.0 License | formstone.it */
+
+/*! formstone v1.4.18-1 [tooltip.js] 2020-10-12 | GPL-3.0 License | formstone.it */
 
 /*! formstone v1.4.18-1 [transition.js] 2020-10-12 | GPL-3.0 License | formstone.it */

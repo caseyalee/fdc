@@ -131,7 +131,7 @@ search.addWidgets([
     sortBy: sortScores,
     transformItems(items) {
       return items.map(item => {
-        console.log(item.label)
+        // console.log(item.label)
         if (item.label == 'compatible') {
           item.label = 'compatible (best)'
         }

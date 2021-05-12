@@ -7,6 +7,29 @@ body.page-template-page-fei {
 .max-w-page {
     max-width: 1320px;
 }
+
+#show-fei-legend {
+  position: absolute;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  top: 5px;
+  right: 5px;
+  @media (min-width: 1280px) {
+    top: -10px;
+    right: -10px;
+  }
+}
+
+#hide-fei-legend {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  @media (min-width: 1280px) {
+    top: -15px;
+    left: -15px;
+  }
+}
+
 .fei-sidebar {
     z-index:99 !important;
     @media (min-width: 1280px) {

@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_60775339d488d",
-            "label": "Sidebar",
+            "label": "Legend",
             "name": "",
             "type": "accordion",
             "instructions": "",
@@ -20,10 +20,10 @@
             "endpoint": 0
         },
         {
-            "key": "field_6077535ad488e",
-            "label": "Sidebar Text",
-            "name": "fei_sidebar_text",
-            "type": "textarea",
+            "key": "field_609c68c88b8a7",
+            "label": "Legend Heading",
+            "name": "legend_heading",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -34,9 +34,85 @@
             },
             "default_value": "",
             "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_609c67dfbb86b",
+            "label": "Legend Description",
+            "name": "legend_description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
             "maxlength": "",
             "rows": 3,
-            "new_lines": "br"
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_609c6809bb86c",
+            "label": "Legend - Compatible",
+            "name": "legend_compatible",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_609c6821bb86d",
+            "label": "Legend - Acceptable",
+            "name": "legend_acceptable",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_609c682bbb86e",
+            "label": "Legend - Incompatible",
+            "name": "legend_incompatible",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "wpautop"
         },
         {
             "key": "field_60775329d488c",
@@ -161,5 +237,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1618432893
+    "modified": 1620863216
 }

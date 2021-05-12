@@ -12,9 +12,76 @@ get_header(); ?>
 <div class="header-spacer"></div>
 
 <div class="lg:pl-80 pb-6 lg:pb-12" id="mainbody">
+
+  <div class="max-w-page bg-white border lg:rounded-lg p-6 mb-6 lg:mx-6 xl:ml-0 relative hidden" id="feilegend">
+
+    <div class="flex flex-wrap 2xl:flex-nowrap">
+
+      <div class="w-full 2xl:w-1/4">
+
+        <div class="text-sm lg:pt-0 xl:px-2 mb-4 2xl:mb-0">
+            <h4 class="text-c-purple font-semibold mb-2 text-2xl 2xl:text-xl"><?php the_field('legend_heading'); ?></h4>
+            <?php the_field('legend_description'); ?>
+            <a href="#" id="hide-fei-legend" class="bg-c-purple text-white hover:bg-c-purple-dark duration-200 w-10 h-10 rounded-full flex justify-center items-center" title="Dismiss"><i class="fal fa-times"></i></a>
+        </div>
+
+      </div>
+
+      <div class="2xl:w-3/4 sm:grid sm:grid-flow-col sm:gap-4 lg:pl-6 equalize" data-equalize-options='{"target":".eq"}'>
+
+        <div class="sm:col-span-4 mb-4 lg:mb-0">
+          <div class="bg-white shadow-md border" style="border-color:#A2D033">
+            <div class="p-6 eq text-sm">
+              <?php the_field('legend_compatible'); ?>
+            </div>
+            <div class="card-bottom score-compatible w-full self-end">
+              <span class="flex items-center">
+                <img src="/app/themes/fdc/assets/img/icon-compatible.png" align="left" alt="icon">
+                <span class="text-white uppercase text-sm ml-2">compatible</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sm:col-span-4 mb-4 lg:mb-0">
+          <div class="bg-white shadow-md border" style="border-color:#EAD03C">
+            <div class="p-6 eq text-sm">
+              <?php the_field('legend_acceptable'); ?>
+            </div>
+            <div class="card-bottom score-acceptable w-full self-end">
+              <span class="flex items-center">
+                <img src="/app/themes/fdc/assets/img/icon-acceptable.png" align="left" alt="icon">
+                <span class="text-white uppercase text-sm ml-2">acceptable</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sm:col-span-4 mb-4 lg:mb-0">
+          <div class="bg-white shadow-md border" style="border-color:#C94546">
+            <div class="p-6 eq text-sm">
+              <?php the_field('legend_incompatible'); ?>
+            </div>
+            <div class="card-bottom score-incompatible w-full self-end">
+              <span class="flex items-center">
+                <img src="/app/themes/fdc/assets/img/icon-incompatible.png" align="left" alt="icon">
+                <span class="text-white uppercase text-sm ml-2">incompatible</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+  </div>
+
   <div class="lg:flex" id="fei-app">
 
-    <div class="fei-sidebar xl:w-3/12 p-6 bg-white shadow-md outline-none" data-navigation-handle=".toggle-sidebar" data-navigation-content=".fei-index-container">
+    <div class="fei-sidebar xl:w-3/12 p-6 bg-white shadow-md outline-none relative" data-navigation-handle=".toggle-sidebar" data-navigation-content=".fei-index-container">
+
+        <a href="#" id="show-fei-legend" class="hidden bg-c-purple text-white hover:bg-c-purple-dark duration-200 text-xs tracking-wider uppercase px-2 py-1 rounded-full flex justify-center items-center" data-title="Show FEI Score Legend"><i class="fas fa-info-circle"></i><span class="ml-1">Legend</span></a>
+
         <div class="filter mb-8">
           <h3 class="d-block mb-2 font-semibold text-xl">Types</h3>
           <div id="types-list"></div>
@@ -22,7 +89,6 @@ get_header(); ?>
         <div class="filter mb-8">
           <h3 class="d-block mb-2 font-semibold text-xl">FEI / Score</h3>
           <div id="scores-list"></div>
-          <div class="text-sm pt-2 text-gray-600"><?php the_field('fei_sidebar_text'); ?></div>
         </div>
         <div class="filter mb-8">
           <h3 class="d-block mb-2 font-semibold text-xl">Subcategory</h3>

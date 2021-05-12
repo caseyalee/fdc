@@ -16,17 +16,15 @@ class FdcAlgoliaSearch {
 
     protected $algolia;
     protected $algolia_index;
-    protected $algolia_kwindex;
 
 
     public function __construct() {
 
         $this->algolia = \Algolia\AlgoliaSearch\SearchClient::create(env('ALGOLIA_APP_ID'), env('ALGOLIA_ADMIN_KEY'));
         $this->algolia_index = env('ALGOLIA_BRANDS_INDEX');
-        $this->algolia_kwindex = env('ALGOLIA_KW_INDEX');
 
-        $this->add_filters();
         $this->add_actions();
+        $this->add_filters();
         require_once __DIR__ . '/wp-cli.php';
 
     }
@@ -36,8 +34,7 @@ class FdcAlgoliaSearch {
      * Define plugin filters
     */
     public function add_filters() {
-        add_filter("brand_to_record", array( $this, 'algolia_brand_to_record' ));
-        add_filter("keyword_to_record", array( $this, 'algolia_keyword_to_record' ));
+        add_filter("brand_to_record", array( $this, 'algolia_brand_to_record' ), 10, 1);
     }
 
 
@@ -45,8 +42,9 @@ class FdcAlgoliaSearch {
      * Define plugin Action Hooks
     */
     public function add_actions() {
-        add_action('save_post_brand', array( $this, 'algolia_update_brand_post' ), 10, 3);
+        add_action('save_post', array( $this, 'algolia_update_brand_post' ), 10, 3);
     }
+
 
 
     /**
@@ -58,7 +56,7 @@ class FdcAlgoliaSearch {
      */
     public function algolia_update_brand_post($id, WP_Post $post, $update) {
 
-        if (wp_is_post_revision($post) || wp_is_post_autosave($post)) {
+        if (wp_is_post_revision($id) || wp_is_post_autosave($id) || $post->post_type !== 'brand') {
             return $post;
         }
 
@@ -76,21 +74,10 @@ class FdcAlgoliaSearch {
             $index->deleteObject($objectID);
         }
 
+        return $post;
+
     }
 
-
-    /**
-     * Keyword Term to Record
-     * @param  WP_Term $term [description]
-     * @return [type]        [description]
-     */
-    public function algolia_keyword_to_record(WP_Term $term) {
-        $record = [];
-        $record['objectID'] = implode('#', ['keyword', $term->term_id]);
-        $record['id'] = $term->term_id;
-        $record['name'] = $term->name;
-        return $record;
-    }
 
 
     /**
@@ -118,58 +105,6 @@ class FdcAlgoliaSearch {
                     return htmlspecialchars_decode($term->name);
                 }, wp_get_post_terms($post->ID, 'brand-category'));
 
-                // $category_data = array_map(function (WP_Term $term) use ($post) {
-                    
-                //     if (!$category_icon = get_field('category_icon', $term)) {
-                //        $category_icon = 'default';
-                //     }
-                //     return [
-                //         'name' => htmlspecialchars_decode($term->name),
-                //         'icon' => $category_icon,
-                //         'order' => (int) $term->term_order
-                //     ];
-                // }, wp_get_post_terms($post->ID, 'brand-category'));
-
-
-                // // Get the primary icon
-                // $primary_icon = array_map(function (WP_Term $term) use ($post) {
-                //     if ($icon = get_field('icon', $term)) {
-                //         $is_primary = $this->is_primary_taxonomy($post->ID,$term);
-                //         if ($is_primary) {
-                //             return $icon['url'];
-                //         }
-                //     }
-                // }, wp_get_post_terms($post->ID, 'brand-category'));
-
-                // // Get any other icons
-                // $secondary_icons = array_map(function (WP_Term $term) use ($post) {
-                //     if ($icon = get_field('icon', $term)) {
-                //         $is_primary = $this->is_primary_taxonomy($post->ID,$term);
-                //         if (!$is_primary) {
-                //             return $icon['url'];
-                //         }
-                //     }
-                // }, wp_get_post_terms($post->ID, 'brand-category'));
-
-                // // Remove null values
-                // $pi = array_filter($primary_icon, function($e) {return !is_null($e);});
-                // $npi = array_filter($secondary_icons, function($e) {return !is_null($e);});
-
-                // Merge primary ahead of secondaries
-                // $category_icons = array_merge($pi, $npi);
-
-                // $category_color = array_map(function (WP_Term $term) use ($post) {
-
-                //     $is_primary = $this->is_primary_taxonomy($post->ID,$term);
-                //     $color = get_field('color', $term);
-                //     if ($is_primary && $color) {
-                //         return $color;
-                //     }
-                //     return false;
-                    
-                // }, wp_get_post_terms($post->ID, 'brand-category'));
-
-                // $category_color = current(array_filter($category_color));
 
                 $logo = get_field('brand_logo',$post->ID);
                 if (!$logo) {
@@ -183,7 +118,6 @@ class FdcAlgoliaSearch {
                 $record['keywords'] = $keywords;
                 $record['categories'] = $categories;
                 $record['types'] = $type;
-                // $record['categorydata'] = $category_data;
                 $record['logo'] = $logo;
                 $record['overall_score'] = strtolower(get_field('overall_score', $post->ID));
                 $record['marketplace_score'] = get_field('score', $post->ID);
@@ -195,24 +129,6 @@ class FdcAlgoliaSearch {
     }
 
 
-    public function is_primary_taxonomy( $post_id, $taxonomy ) {
-
-        $is_primary = false;
-
-        if (class_exists('WPSEO_Primary_Term')) {
-
-            $wpseo_primary_term = new WPSEO_Primary_Term( $taxonomy, $post_id );
-            $primary_term = get_post_meta( $post_id, WPSEO_Meta::$meta_prefix . 'primary_' . $taxonomy->taxonomy, true );
-            return (int) $primary_term === $taxonomy->term_id;
-
-        }
-
-        return $is_primary;
-    }
-
-
-
 }
 
 new FdcAlgoliaSearch();
-

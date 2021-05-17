@@ -4,7 +4,7 @@
 // 
 // WP_Query arguments
 $services_args = array (
-    'p'                      => 1494,
+    'p'                      => 1588,
     'post_type'              => array( 'brand' ),
 );
 

@@ -221,7 +221,6 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "permalink",
         "the_content",
         "excerpt",
         "discussion",
@@ -237,5 +236,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620863216
+    "modified": 1621217840
 }

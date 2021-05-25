@@ -51,7 +51,7 @@
                 elseif( get_row_layout() == 'basic_content' ):
 
                     $content = get_sub_field('content');
-                    echo '<div class="container py-6 lg:py-10 xl:py-12 mx-auto">';
+                    echo '<div class="container py-6 lg:py-10 xl:py-12">';
                     echo '<div class="prose prose-lg max-w-none lg:max-w-7xl">';
                     echo apply_filters('the_content', $content);
                     echo '</div>';
@@ -66,7 +66,7 @@
                     $column_two_content = get_sub_field('column_two_content');
                     $vertical_alignment = get_sub_field('vertical_alignment');
 
-                    echo '<div class="container mx-auto">';
+                    echo '<div class="container">';
                     echo '<div class="lg:flex py-6 lg:py-10 xl:py-12 max-w-7xl" style="align-items:'.$vertical_alignment.'">';
                     echo '<div class="lg:w-1/2 pb-4 lg:p-4">';
                     echo '<div class="prose prose-lg lg:pr-3">';

@@ -43,8 +43,70 @@ class FdcAlgoliaSearch {
     */
     public function add_actions() {
         add_action('save_post', array( $this, 'algolia_update_brand_post' ), 10, 3);
+        add_action('admin_menu', array( $this, 'fdc_plugin_setup_menu' ));
     }
 
+    public function fdc_plugin_setup_menu(){
+        add_menu_page( 'Run Algolia Sync', 'Algolia Sync', 'manage_options', 'fdc-algolia-sync', array( $this, 'fdc_initindex' ) );
+    }
+
+    public function fdc_initindex(){
+
+        echo '<div class="wrap">';
+        echo '<h1 class="wp-heading-inline">Run Algolia Sync</h1>';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['confirm'] == true) {
+
+            // clear index
+            $index = $this->algolia->initIndex($this->algolia_index);
+            $index->clearObjects()->wait();
+
+            // start sync
+            $paged = 1;
+            $count = 0;
+
+            do {
+
+                $posts = new WP_Query([
+                    'posts_per_page' => 250,
+                    'paged' => $paged,
+                    'post_type' => 'brand',
+                    'orderby' => 'menu_order',
+                    'post_status' => 'publish',
+                ]);
+
+                if (!$posts->have_posts()) {
+                    break;
+                }
+
+                $records = [];
+
+                foreach ($posts->posts as $post) {
+
+                    $record = (array) apply_filters('brand_to_record', $post);
+
+                    $records[] = $record;
+                    $count++;
+
+                }
+                $index->saveObjects($records)->wait();
+
+                $paged++;
+
+            } while (true);
+
+            echo '<div id="fdc-plugin-message" class="notice notice-success"><p><strong>'.$count.' Brands indexed in Algolia!</strong></p></div>';
+
+        } else {
+            echo '<div id="fdc-plugin-message" class="notice notice-warning"><p><strong>Are you sure you want to flush the Algolia index and resync all data?</strong></p></div>';
+            echo '<form action="admin.php?page=fdc-algolia-sync" method="post">';
+            echo '<input type="hidden" name="confirm" value="true">';
+            echo '<input name="submit" class="button button-primary" type="submit" value="Run" />';
+            echo '</form>';
+        }
+
+        echo '</div>'; //wrap
+    }
 
 
     /**

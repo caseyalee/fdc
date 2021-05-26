@@ -98,11 +98,15 @@ get_header(); ?>
 
     <div class="fei-index-container w-full xl:w-9/12 pt-6 lg:pt-0 pb-6 px-4">
       <div class="filter-controls lg:flex lg:space-x-2">
-        <div id="searchbox" class="ais-SearchBox lg:w-1/2 xl:w-9/12"></div>
-        <div class="lg:w-1/2 xl:w-3/12 flex space-x-2 text-sm pt-2 lg:pt-0">
-          <a class="toggle-sidebar focus:none focus:outline-none xl:hidden w-1/2 text-center" href="#"><span class="bg-c-purple text-white px-8 py-3 block uppercase">Filters</span></a>
+        <div class="lg:w-1/2 xl:w-3/12 flex space-x-2 text-sm pt-2 lg:pt-0 mb-2">
+          <a class="toggle-sidebar focus:none focus:outline-none xl:hidden w-1/2 text-center" href="#">
+            <span class="bg-c-purple text-white px-8 py-3 block uppercase flex items-center justify-center">
+            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16px" style="margin-right:4px"><path fill="currentColor" d="M231.536 475.535l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113L238.607 60.506c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0L3.515 247.515c-4.686 4.686-4.686 12.284 0 16.971l211.051 211.05c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
+          Filters</span>
+          </a>
           <div id="clear-refinements" class="w-1/2 lg:w-full"></div>
         </div>
+        <div id="searchbox" class="ais-SearchBox lg:w-1/2 xl:w-9/12"></div>
       </div>
       <div class="fei-index mt-4" id="brandListings"></div>
       <div id="pagination"></div>

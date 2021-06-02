@@ -164,7 +164,7 @@ search.addWidgets([
             <div class="brand-card-inner">
               <div class="front flex flex-wrap">
                 <div class="top self-start w-full px-3 py-5 lg:px-5">
-                  <p class="text-center font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
+                  <p class="text-center font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-tight hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
                 </div>
                 <div class="inner px-4 pb-8 self-center w-full flex justify-center">
                   <div class="text-center">
@@ -180,8 +180,7 @@ search.addWidgets([
               </div>
               <div class="back flex flex-wrap">
                 <div class="top self-start w-full px-3 py-5 lg:px-5">
-                  <p class="font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
-                  <p class="text-sm text-gray-400 hit-title">{{#categorydata}}{{name}}{{/categorydata}}</p>
+                  <p class="font-semibold text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-tight hit-title">{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</p>
                 </div>
                 <div class="inner px-3 lg:px-5 pb-8 self-center w-full flex justify-center">
                   <ul class="w-full">

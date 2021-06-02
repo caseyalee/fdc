@@ -17,7 +17,7 @@ function theme_scripts() {
       // instantsearch.development.js
       wp_register_script('instantsearch-js', get_template_directory_uri() . '/assets/js/search/instantsearch.development.js', array('jquery'), NULL, true);
       wp_register_script('algoliasearch-js', get_template_directory_uri() . '/assets/js/search/algoliasearch-lite.umd.js', array('jquery'), NULL, true);
-      wp_register_script('search-js', get_template_directory_uri() . '/assets/js/search/search.js', array('jquery','algoliasearch-js','instantsearch-js'), 2021041485912, true);
+      wp_register_script('search-js', get_template_directory_uri() . '/assets/js/search/search.js', array('jquery','algoliasearch-js','instantsearch-js'), 20210602100612, true);
 
       if (is_page('fei')) {
         wp_enqueue_script('search-js');

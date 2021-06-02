@@ -15,9 +15,10 @@ function theme_scripts() {
 
       // instantsearch.production.min.js
       // instantsearch.development.js
+      $theme_search_js = '/assets/js/search/search.js';
       wp_register_script('instantsearch-js', get_template_directory_uri() . '/assets/js/search/instantsearch.development.js', array('jquery'), NULL, true);
       wp_register_script('algoliasearch-js', get_template_directory_uri() . '/assets/js/search/algoliasearch-lite.umd.js', array('jquery'), NULL, true);
-      wp_register_script('search-js', get_template_directory_uri() . '/assets/js/search/search.js', array('jquery','algoliasearch-js','instantsearch-js'), 20210602100612, true);
+      wp_register_script('search-js', get_template_directory_uri() . $theme_search_js, array('jquery','algoliasearch-js','instantsearch-js'), filemtime( get_stylesheet_directory().$theme_search_js ), true);
 
       if (is_page('fei')) {
         wp_enqueue_script('search-js');

@@ -32,6 +32,12 @@ if ( ! function_exists('wp_all_import_sanitize_url')) {
                     if ( substr( $link, -4 ) == 'dl=0' ) {
                         return str_replace( 'dl=0', 'dl=1', $link );
                     }
+                    if ( strpos( $link, '?' ) === false ) {
+                    	return $link . '?dl=1';
+                    }
+	                if ( strpos( $link, 'dl=1' ) === false ) {
+		                return $link . '&dl=1';
+	                }
                     break;
                 case 'google.com':
                     if ( !empty( $type ) ) {

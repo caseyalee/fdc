@@ -117,8 +117,9 @@ abstract class PMXI_Controller_Admin extends PMXI_Controller {
 
 		wp_enqueue_script('pmxi-admin-script', WP_ALL_IMPORT_ROOT_URL . '/static/js/admin.js', array('jquery', 'jquery-ui-dialog', 'jquery-ui-datepicker', 'jquery-ui-draggable', 'jquery-ui-droppable', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position', 'jquery-ui-autocomplete', 'wp-theme-plugin-editor'), PMXI_VERSION);
         wp_enqueue_script('pmxi-scheduling-script', WP_ALL_IMPORT_ROOT_URL . '/static/js/scheduling.js', array('pmxi-admin-script'), PMXI_VERSION);
-		wp_enqueue_script('pmxi-ftp-browser-script', WP_ALL_IMPORT_ROOT_URL . '/static/js/ftp-browser.js', array('pmxi-admin-script'), PMXI_VERSION);
-							
+        wp_enqueue_script('pmxi-ftp-browser-script', WP_ALL_IMPORT_ROOT_URL . '/static/js/ftp-browser.js', array('pmxi-admin-script'), PMXI_VERSION);
+		wp_add_inline_script('pmxi-ftp-browser-script', 'var wpai_home_url=\''. get_home_url().'\'' );
+
 	}
 
 	public function add_admin_scripts() {

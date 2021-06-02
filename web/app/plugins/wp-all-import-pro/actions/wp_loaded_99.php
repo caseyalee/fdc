@@ -51,6 +51,7 @@ function pmxi_wp_loaded_99() {
 			$logger = function ( $m ) {
 				print( "<p>[" . date( "H:i:s" ) . "] $m</p>\n" );
 			};
+			$logger = apply_filters('wp_all_import_logger', $logger);
 
 			if ( empty( $_GET['import_id'] ) ) {
 				if ( $_GET['action'] == 'cleanup' ) {

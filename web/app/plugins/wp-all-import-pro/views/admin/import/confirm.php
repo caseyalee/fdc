@@ -9,7 +9,7 @@
 			<div class="wpallimport-logo"></div>
 			<div class="wpallimport-title">
 				<p><?php _e('WP All Import', 'wp_all_import_plugin'); ?></p>
-				<h2><?php _e('Import XML / CSV', 'wp_all_import_plugin'); ?></h2>					
+				<h2><?php _e('Import XML / CSV', 'wp_all_import_plugin'); ?></h2>
 			</div>
 			<div class="wpallimport-links">
 				<a href="http://www.wpallimport.com/support/" target="_blank"><?php _e('Support', 'wp_all_import_plugin'); ?></a> | <a href="http://www.wpallimport.com/documentation/" target="_blank"><?php _e('Documentation', 'wp_all_import_plugin'); ?></a>
@@ -363,7 +363,7 @@
 			</td>			
 		</tr>
 	</table>
-	<?php if ( $this->type !== 'upload' ): ?>
+	<?php if ( $import_type !== 'upload' ): ?>
     <div style="color: #425F9A; font-size: 14px; font-weight: bold; margin: 0 0 15px; line-height: 25px; text-align: center;">
         <div id="no-subscription" style="display: none;">
             <?php _e("Looks like you're trying out Automatic Scheduling!", 'wp_all_import_plugin');?><br/>
@@ -385,7 +385,6 @@
 		</p>
 	</form>	
 	<?php endif; ?>
-
 	<a href="http://soflyy.com/" target="_blank" class="wpallimport-created-by"><?php _e('Created by', 'wp_all_import_plugin'); ?> <span></span></a>
 	
 </div>

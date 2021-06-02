@@ -81,6 +81,7 @@ if ( ! class_exists('PMXI_Upload')){
 											'templates' => $templates,								
 											'post_type' => (!empty($options)) ? $options['custom_type'] : false,
                                             'taxonomy_type' => (!empty($options['taxonomy_type'])) ? $options['taxonomy_type'] : false,
+                                            'gravity_form_title' => (!empty($options['gravity_form_title'])) ? $options['gravity_form_title'] : false,
 											'is_empty_bundle_file' => true
 										);
 									}
@@ -261,6 +262,7 @@ if ( ! class_exists('PMXI_Upload')){
 				'templates'     => $templates,
 				'post_type'     => (!empty($options)) ? $options['custom_type'] : false,
                 'taxonomy_type' => (!empty($options['taxonomy_type'])) ? $options['taxonomy_type'] : false,
+                'gravity_form_title' => (!empty($options['gravity_form_title'])) ? $options['gravity_form_title'] : false,
 			);
 		}
 
@@ -541,6 +543,7 @@ if ( ! class_exists('PMXI_Upload')){
 				'templates'     => $templates,
 				'post_type'     => (!empty($options)) ? $options['custom_type'] : false,
                 'taxonomy_type' => (!empty($options['taxonomy_type'])) ? $options['taxonomy_type'] : false,
+                'gravity_form_title' => (!empty($options['gravity_form_title'])) ? $options['gravity_form_title'] : false,
 			);
 		}
 
@@ -812,7 +815,8 @@ if ( ! class_exists('PMXI_Upload')){
 				'templates'     => $templates,
 				'post_type'     => (!empty($options)) ? $options['custom_type'] : false,
                 'taxonomy_type' => (!empty($options['taxonomy_type'])) ? $options['taxonomy_type'] : false,
-			);		
+                'gravity_form_title' => (!empty($options['gravity_form_title'])) ? $options['gravity_form_title'] : false,
+			);
 		}
 
 		protected function get_xml_file( $filePath )

@@ -64,7 +64,8 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		}		
 
 		if ( ! PMXI_Plugin::$session->has_session()
-			or ! empty( PMXI_Plugin::$session->update_previous ) and $update_previous->getById(PMXI_Plugin::$session->update_previous)->isEmpty()			
+			or ! empty( PMXI_Plugin::$session->update_previous ) and $update_previous->getById(PMXI_Plugin::$session->update_previous)->isEmpty()
+		    or empty($xml)
 			or ! @$dom->loadXML($xml)// FIX: libxml xpath doesn't handle default namespace properly, so remove it upon XML load			
 		) {					
 			if ( ! PMXI_Plugin::is_ajax() ){
@@ -141,6 +142,8 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
             'taxonomy_type' => ''
 		);
 
+		$DefaultOptions = apply_filters('wp_all_import_default_options', $DefaultOptions);
+
 		if ($parent_import and ! $parent_import_record->getById($parent_import)->isEmpty()){
 			$DefaultOptions['custom_type'] = $parent_import_record->options['custom_type'];
 		}
@@ -162,7 +165,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		} else {
 			$DefaultOptions = (PMXI_Plugin::$session->has_session() && !empty(PMXI_Plugin::$session->first_step) ? PMXI_Plugin::$session->first_step : array()) + $DefaultOptions;
 		}
-		
+
 		$this->data['post'] = $post = $this->input->post( $DefaultOptions );					
 		
 		if ( ! class_exists('DOMDocument') or ! class_exists('XMLReader') ) {
@@ -425,7 +428,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					PMXI_Plugin::$session->set('options', $update_previous->options);
 				} else {
 					PMXI_Plugin::$session->set('update_previous', '');
-				}		
+				}
 
 				PMXI_Plugin::$session->save_data(); 						
 				
@@ -473,7 +476,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			} else {
 				$node_list = @ $xpath->query($post['xpath']); // make sure only element selection is allowed; prevent parsing warning to be displayed
 				if (FALSE === $node_list) {
-					$this->errors->add('form-validation', __('Your XPath is not valid.<br/><br/>Click "get default XPath" to get the default XPath.', 'wp_all_import_plugin'));				
+					$this->errors->add('form-validation', __('Your XPath is not valid.', 'wp_all_import_plugin'));
 				} else {
 					foreach ($node_list as $el) {
 						if ( ! $el instanceof DOMElement) {
@@ -539,7 +542,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		if ( ! check_ajax_referer( 'wp_all_import_secure', 'security', false )) {
 			$this->errors->add('form-validation', __('Security check', 'wp_all_import_plugin'));
 		} elseif ('' == $post['xpath']) {
-			$this->errors->add('form-validation', __('Your XPath is empty.<br/><br/>Please enter an XPath expression, or click "get default XPath" to get the default XPath.', 'wp_all_import_plugin'));
+			$this->errors->add('form-validation', __('Your XPath is empty.<br/><br/>Please enter an XPath expression.', 'wp_all_import_plugin'));
 		} else {					
 
 			$source = PMXI_Plugin::$session->get('source');
@@ -684,14 +687,14 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		$this->data['tagno'] = max(intval($this->input->getpost('tagno', 1)), 0);
 
 		if ('' == $post['xpath']) {
-			$this->errors->add('form-validation', __('Your XPath is empty.<br/><br/>Please enter an XPath expression, or click "get default XPath" to get the default XPath.', 'wp_all_import_plugin'));
+			$this->errors->add('form-validation', __('Your XPath is empty.<br/><br/>Please enter an XPath expression.', 'wp_all_import_plugin'));
 		} else {						
 			$post['xpath'] = '/' . ((!empty($this->data['update_previous']->root_element)) ? $this->data['update_previous']->root_element : PMXI_Plugin::$session->source['root_element']) .'/'.  ltrim(trim(str_replace("[*]","",$post['xpath']),'{}'), '/');			
 			// in default mode
 			$this->data['variation_elements'] = $elements = @ $xpath->query($post['xpath']); // prevent parsing warning to be displayed
 			$this->data['variation_list_count'] = $elements->length;			
 			if (FALSE === $elements) {
-				$this->errors->add('form-validation', __('Your XPath is not valid.<br/><br/>Click "get default XPath" to get the default XPath.', 'wp_all_import_plugin'));				
+				$this->errors->add('form-validation', __('Your XPath is not valid.', 'wp_all_import_plugin'));
 			} elseif ( ! $elements->length) {
 				$this->errors->add('form-validation', __('No matching variations found for XPath specified', 'wp_all_import_plugin'));
 			} else {
@@ -1383,7 +1386,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			$this->data['source_type'] = PMXI_Plugin::$session->source['type'];
 			
 			foreach (PMXI_Admin_Addons::get_active_addons() as $class) {
-				if (class_exists($class)) $default += call_user_func(array($class, "get_default_import_options"));			
+				if (class_exists($class)) $default += call_user_func(array($class, "get_default_import_options"));
 			}
 			$default['wizard_type'] = PMXI_Plugin::$session->wizard_type;
 			if (empty($default['custom_type'])) $default['custom_type'] = PMXI_Plugin::$session->custom_type;
@@ -1470,14 +1473,14 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if (!empty($post['title'])) {			
 				$this->_validate_template($post['title'], 'Post title');
 			}
-			elseif ( ! in_array($post['custom_type'], array('shop_order', 'taxonomies', 'import_users', 'shop_customer', 'comments', 'woo_reviews')) ){
+			elseif ( ! in_array($post['custom_type'], array('shop_order', 'taxonomies', 'import_users', 'shop_customer', 'comments', 'woo_reviews', 'gf_entries')) ){
 				$this->warnings->add('1', __('<strong>Warning:</strong> your title is blank.', 'wp_all_import_plugin'));
 			}
 
 			if (!empty($post['content'])) {				
 				$this->_validate_template($post['content'], 'Post content');
 			}
-			elseif ( ! in_array($post['custom_type'], array('shop_order', 'taxonomies', 'import_users', 'shop_customer', 'comments', 'woo_reviews')) ){
+			elseif ( ! in_array($post['custom_type'], array('shop_order', 'taxonomies', 'import_users', 'shop_customer', 'comments', 'woo_reviews', 'gf_entries')) ){
 				$this->warnings->add('2', __('<strong>Warning:</strong> your content is blank.', 'wp_all_import_plugin'));
 			}
 			
@@ -1803,7 +1806,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			$DefaultOptions = array_replace_recursive($default, (isset(PMXI_Plugin::$session->options) ? PMXI_Plugin::$session->options : array()));
 
-			if ( ! in_array(PMXI_Plugin::$session->options['custom_type'], array('import_users', 'shop_customer', 'shop_order', 'comments', 'woo_reviews')) ){
+			if ( ! in_array(PMXI_Plugin::$session->options['custom_type'], array('import_users', 'shop_customer', 'shop_order', 'comments', 'woo_reviews', 'gf_entries')) ){
 				if (empty(PMXI_Plugin::$session->options['title']))
 					$this->warnings->add('form-validation', __('<strong>Warning:</strong> your title is blank.'));
 			}
@@ -1896,7 +1899,11 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			}
 			if ( 'manual' == $post['duplicate_matching'] ){
 				if ( 'pid' == $post['duplicate_indicator'] && '' == $post['pid_xpath'] ){
-                    $this->errors->add('form-validation', __('Post ID must be specified.', 'wp_all_import_plugin'));
+					if ($post['custom_type'] == 'gf_entries') {
+						$this->errors->add('form-validation', __('Entry ID must be specified.', 'wp_all_import_plugin'));
+					} else {
+						$this->errors->add('form-validation', __('Post ID must be specified.', 'wp_all_import_plugin'));
+					}
                 }
                 if ( 'taxonomies' == $post['custom_type'] ){
                     if ( 'title' == $post['duplicate_indicator'] && '' == $post['title_xpath'] ){
@@ -2347,7 +2354,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if (class_exists($class)) $DefaultOptions += call_user_func(array($class, "get_default_import_options"));			
 		}		
 
-		if ($this->isWizard and ! in_array(PMXI_Plugin::$session->options['custom_type'], array('import_users', 'shop_customer', 'shop_order', 'comments', 'woo_reviews'))){
+		if ($this->isWizard and ! in_array(PMXI_Plugin::$session->options['custom_type'], array('import_users', 'shop_customer', 'shop_order', 'comments', 'woo_reviews', 'gf_entries'))){
 			if (empty(PMXI_Plugin::$session->options['title']))
 				$this->warnings->add('form-validation', __('<strong>Warning:</strong> your title is blank.', 'wp_all_import_plugin'));
 		}
@@ -2610,10 +2617,11 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		if ($ajax_processing) {
 			$logger = function($m) {echo "<div class='progress-msg'>[". date("H:i:s") ."] $m</div>\n";flush();};
-		}
-		else {
+		} else {
             $logger = function($m) {echo "<div class='progress-msg'>$m</div>\n"; if ( "" != strip_tags(wp_all_import_strip_tags_content($m))) { PMXI_Plugin::$session->log .= "<p>".strip_tags(wp_all_import_strip_tags_content($m))."</p>"; flush(); }};
 		}
+
+		$logger = apply_filters('wp_all_import_logger', $logger);
 
 		PMXI_Plugin::$session->set('start_time', (empty(PMXI_Plugin::$session->start_time)) ? time() : PMXI_Plugin::$session->start_time);
 

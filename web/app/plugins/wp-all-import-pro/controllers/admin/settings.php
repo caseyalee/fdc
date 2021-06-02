@@ -158,6 +158,23 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 
             if ( ! $this->errors->get_error_codes()) { // no validation errors detected
 
+                $current_cron_job_key = PMXI_Plugin::getInstance()->getOption('cron_job_key');
+                $new_cron_job_key = $post['cron_job_key'];
+
+                if($new_cron_job_key !== $current_cron_job_key) {
+
+                    // Cron job key changed
+                    $scheduling_service = \Wpai\Scheduling\Scheduling::create();
+                    $imports = new PMXI_Import_List();
+                    $imports = $imports->getBy('deleted', 0)->convertRecords();
+
+                    foreach ($imports as $import) {
+                        if($import->options['scheduling_enable'] === "1") {
+                            $scheduling_service->updateApiKey($import->id, $new_cron_job_key);
+                        }
+                    }
+                }
+
 				PMXI_Plugin::getInstance()->updateOption($post);
 
 				$files = new PMXI_File_List(); $files->sweepHistory(); // adjust file history to new settings specified
@@ -737,6 +754,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 				if ( ! empty($upload_result['post_type'])) {
 					$post_type = $upload_result['post_type'];
 					$taxonomy_type = $upload_result['taxonomy_type'];
+					$gravity_form_title = $upload_result['gravity_form_title'];
 					switch ( $post_type ) {
 						case 'shop_order':
 							if ( ! class_exists('WooCommerce') ) {
@@ -769,7 +787,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 
 				if ( ! empty($upload_result['is_empty_bundle_file'])) {
 					// Return JSON-RPC response
-					exit(json_encode(array("jsonrpc" => "2.0", "error" => null, "result" => null, "id" => "id", "name" => $upload_result['filePath'], "post_type" => $post_type, "taxonomy_type" => $taxonomy_type, "notice" => $notice, "template" => $upload_result['template'], "url_bundle" => true)));
+					exit(json_encode(array("jsonrpc" => "2.0", "error" => null, "result" => null, "id" => "id", "name" => $upload_result['filePath'], "post_type" => $post_type, "taxonomy_type" => $taxonomy_type, "gravity_form_title" => $gravity_form_title, "notice" => $notice, "template" => $upload_result['template'], "url_bundle" => true)));
 				}
 				else {
 
@@ -848,7 +866,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 		}			
 
 		// Return JSON-RPC response
-		exit(json_encode(array("jsonrpc" => "2.0", "error" => null, "result" => null, "id" => "id", "name" => $filePath, "post_type" => $post_type, "taxonomy_type" => $taxonomy_type, "notice" => $notice)));
+		exit(json_encode(array("jsonrpc" => "2.0", "error" => null, "result" => null, "id" => "id", "name" => $filePath, "post_type" => $post_type, "taxonomy_type" => $taxonomy_type, "gravity_form_title" => $gravity_form_title, "notice" => $notice)));
 
 	}		
 

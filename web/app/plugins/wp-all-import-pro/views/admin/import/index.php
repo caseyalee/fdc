@@ -15,7 +15,7 @@
 					<div class="wpallimport-logo"></div>
 					<div class="wpallimport-title">
 						<p><?php _e('WP All Import', 'wp_all_import_plugin'); ?></p>
-						<h2><?php _e('Import XML / CSV', 'wp_all_import_plugin'); ?></h2>					
+						<h2><?php _e('Import XML / CSV', 'wp_all_import_plugin'); ?></h2>
 					</div>
 					<div class="wpallimport-links">
 						<a href="http://www.wpallimport.com/support/" target="_blank"><?php _e('Support', 'wp_all_import_plugin'); ?></a> | <a href="http://www.wpallimport.com/documentation/" target="_blank"><?php _e('Documentation', 'wp_all_import_plugin'); ?></a>
@@ -466,6 +466,8 @@
 											<a href="https://www.wpallimport.com/checkout/?edd_action=add_to_cart&download_id=2707221&edd_options%5Bprice_id%5D=1" target="_blank" class="upgrade_link"><?php _e('Purchase the User Add-On', 'wp_all_import_plugin');?></a>
 										</div>
 									<?php endif; ?>
+
+                                    <?php do_action('wp_all_import_entity_type_bundle', $post, false); ?>
 								</div>
 							</div>
 						</div>

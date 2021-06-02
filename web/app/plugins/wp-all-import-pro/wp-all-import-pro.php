@@ -3,7 +3,7 @@
 Plugin Name: WP All Import Pro
 Plugin URI: http://www.wpallimport.com/
 Description: The most powerful solution for importing XML and CSV files to WordPress. Import to Posts, Pages, and Custom Post Types. Support for imports that run on a schedule, ability to update existing imports, and much more.
-Version: 4.6.5
+Version: 4.6.7
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
     /**
      *
      */
-    define('PMXI_VERSION', '4.6.5');
+    define('PMXI_VERSION', '4.6.7');
 
     /**
      *
@@ -337,7 +337,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
             }
 
 			if ($current_options !== $this->options) {
-                update_option($option_name, $this->options);
+                update_option($option_name, $this->options, false);
             }
 
 			register_activation_hook(self::FILE, array($this, 'activation'));
@@ -569,18 +569,18 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 					}
 				}
 				if ($commit_migration) {
-                    update_option('pmxi_is_migrated', PMXI_VERSION);
+                    update_option('pmxi_is_migrated', PMXI_VERSION, false);
                     // Generate functions hash on plugin update.
                     $functions_hash = wp_all_import_generate_functions_hash();
                     if ($functions_hash) {
                         foreach ($imports->setColumns($imports->getTable() . '.*')->getBy(array('id !=' => ''))->convertRecords() as $imp) {
-                            update_option('_wp_all_import_functions_hash_' . $imp->id, $functions_hash);
+                            update_option('_wp_all_import_functions_hash_' . $imp->id, $functions_hash, false);
                         }
                     }
                 }
 			}
             if ($commit_migration) {
-                update_option("wp_all_import_db_version", PMXI_VERSION);
+                update_option("wp_all_import_db_version", PMXI_VERSION, false);
             }
 		}
 
@@ -737,7 +737,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 						if ($this->_admin_current_screen->is_ajax) { // ajax request
 							$controller->$action();
 							do_action('pmxi_action_after');
-							die(); // stop processing since we want to output only what controller is randered, nothing in addition
+							wp_die(); // stop processing since we want to output only what controller is randered, nothing in addition
 						} elseif ( ! $controller->isInline) {
 							@ob_start();
 							$controller->$action();
@@ -940,7 +940,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 					$this->options['licenses'][$key] = self::encode(self::decode($value));
 				}
 			}
-			update_option(get_class($this) . '_Options', $this->options);
+			update_option(get_class($this) . '_Options', $this->options, false);
 
 			return $this->options;
 		}
@@ -988,7 +988,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 			$option_name = get_class($this) . '_Options';
 			$options_default = PMXI_Config::createFromFile(self::ROOT_DIR . '/config/options.php')->toArray();
 			$wpai_options = get_option($option_name, false);
-			if ( ! $wpai_options ) update_option($option_name, $options_default);
+			if ( ! $wpai_options ) update_option($option_name, $options_default, false);
 
 			// create/update required database tables
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -1025,6 +1025,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 							$comment_imports = array();
 							$post_imports = array();
 							$taxonomies_imports = array();
+							$gf_imports = array();
 
 							foreach ($imports_list as $import_entry) {
 								$import_id = $import_entry->id;
@@ -1037,7 +1038,9 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
                                     $comment_imports[] = $import_id;
                                 } elseif ( in_array($import_type, array('taxonomies')) ) {
                                     $taxonomies_imports[] = $import_id;
-                                } else {
+								} elseif ( in_array($import_type, array('gf_entries')) ) {
+									$gf_imports[] = $import_id;
+								} else {
 									$post_imports[] = $import_id;
 								}
 							}
@@ -1049,16 +1052,22 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 							}
 
                             if ( ! empty($comment_imports) ) {
-                                $comment_table = $wpdb->base_prefix . 'comments';
+                                $comment_table = $wpdb->prefix . 'comments';
                                 $comment_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $comment_imports) . ') AND post_id NOT IN (SELECT comment_ID FROM ' . $comment_table . ')';
                                 $wpdb->query($comment_query);
                             }
 
                             if ( ! empty($taxonomies_imports) ) {
-                                $terms_table = $wpdb->base_prefix . 'terms';
+                                $terms_table = $wpdb->prefix . 'terms';
                                 $terms_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $taxonomies_imports) . ') AND post_id NOT IN (SELECT term_id FROM ' . $terms_table . ')';
                                 $wpdb->query($terms_query);
                             }
+
+							if ( ! empty($gf_imports) ) {
+								$entries_table = $wpdb->prefix . 'gf_entry';
+								$entries_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $gf_imports) . ') AND post_id NOT IN (SELECT id FROM ' . $entries_table . ')';
+								$wpdb->query($entries_query);
+							}
 							
 							if ( ! empty($post_imports) ) {
 								$post_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $post_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $wpdb->posts . ')';
@@ -1086,6 +1095,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
                 $comment_imports = array();
 				$post_imports = array();
 				$taxonomies_imports = array();
+				$gf_imports = array();
 
 				foreach ($imports_list as $import_entry) {
 					$import_id = $import_entry->id;
@@ -1098,7 +1108,9 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
                         $comment_imports[] = $import_id;
                     } elseif ( in_array($import_type, array('taxonomies')) ) {
                         $taxonomies_imports[] = $import_id;
-                    } else {
+					} elseif ( in_array($import_type, array('gf_entries')) ) {
+						$gf_imports[] = $import_id;
+					} else {
 						$post_imports[] = $import_id;
 					}
 				}
@@ -1120,6 +1132,12 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
                     $terms_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $taxonomies_imports) . ') AND post_id NOT IN (SELECT term_id FROM ' . $terms_table . ')';
                     $wpdb->query($terms_query);
                 }
+
+				if ( ! empty($gf_imports) ) {
+					$entries_table = $wpdb->base_prefix . 'gf_entry';
+					$entries_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $entries_table) . ') AND post_id NOT IN (SELECT id FROM ' . $entries_table . ')';
+					$wpdb->query($entries_query);
+				}
 				
 				if ( ! empty($post_imports) ) {
 					$post_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $post_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $wpdb->posts . ')';
@@ -1450,6 +1468,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 				'is_update_comment_status' => 1,
 				'is_update_ping_status' => 1,
 				'is_update_post_type' => 1,
+				'is_update_post_format' => 1,
 				'update_categories_logic' => 'full_update',
 				'taxonomies_list' => array(),
 				'taxonomies_only_list' => array(),
@@ -1557,6 +1576,8 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 				'taxonomy_parent' => '',
 				'taxonomy_slug' => 'auto',
 				'taxonomy_slug_xpath' => '',
+				'taxonomy_display_type' => '',
+				'taxonomy_display_type_xpath' => '',
 				'import_img_tags' => 0,
 				'search_existing_images_logic' => 'by_url',
 				'enable_import_scheduling' => 'false',

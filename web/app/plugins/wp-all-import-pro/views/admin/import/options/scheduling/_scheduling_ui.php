@@ -61,12 +61,12 @@
 								<div style="margin-bottom: 2px;">
 									<label style="margin-bottom: -4px !important;">
 										<input type="radio" name="scheduling_enable" value="1" <?php if($post['scheduling_enable'] == 1) {?> checked="checked" <?php }?>/>
-										<h4 style="margin: 0; position: relative; display: inline-block;"><?php _e('Automatic Scheduling', PMXI_Plugin::LANGUAGE_DOMAIN); ?>
-											<span class="connection-icon" style="position: absolute; top:-1px; left: 152px;">
+										<h4 style="margin: 0; display: inline-flex; align-items: center;"><?php _e('Automatic Scheduling', PMXI_Plugin::LANGUAGE_DOMAIN); ?>
+											<span class="connection-icon" style="margin-left: 8px; height: 16px;">
 															<?php include_once('_connection_icon.php'); ?>
 														</span>
 											<?php if (!$scheduling->checkConnection()) { ?>
-												<span class="wpai-license" style="margin-left: 25px; display: inline-block; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?> color: #f2b03d;  ">Unable to connect - <a target="_blank" style="text-decoration: underline" href="http://wpallimport.com/support">please contact support</a>.</span>
+												<span class="wpai-license" style="margin-left: 8px; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support</span></span>
 											<?php } ?>
 										</h4>
 									</label>

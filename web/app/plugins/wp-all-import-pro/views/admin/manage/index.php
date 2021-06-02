@@ -2,7 +2,7 @@
     (function ($, ajaxurl, wp_all_import_security) {
 
         $(document).ready(function () {
-            $('.open_cron_scheduling').click(function () {
+            $('.open_cron_scheduling').on('click', function () {
 
                 var itemId = $(this).data('itemid');
                 openSchedulingDialog(itemId, $(this), '<?php echo WP_ALL_IMPORT_ROOT_URL; ?>/static/img/preloader.gif');
@@ -16,8 +16,8 @@
 	<div class="wpallimport-logo"></div>
 	<div class="wpallimport-title">
 		<p><?php _e('WP All Import', 'wp_all_import_plugin'); ?></p>
-		<h3><?php _e('Manage Imports', 'wp_all_import_plugin'); ?></h3>			
-	</div>	
+		<h3><?php _e('Manage Imports', 'wp_all_import_plugin'); ?></h3>
+	</div>
 </div>
 
 <h2></h2> <!-- Do not remove -->
@@ -353,7 +353,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
                                         <a href="#help" class="wpallimport-help" style="position: relative; top: -2px; margin-left: 0;"  title="<?php _e("To run this import on a schedule you must use the 'Download from URL' or 'Use existing file' option on the Import Settings page.", PMXI_Plugin::LANGUAGE_DOMAIN);?>">?</a>
                                         <br/>
                                     <?php } else { ?>
-                                        <a href="#"
+                                        <a href="javascript:void(0);"
                                            class="open_cron_scheduling"
                                            data-itemid="<?php echo $item['id'];?>"><?php _e('Scheduling Options', 'wp_all_import_plugin'); ?></a><br/>
 
@@ -411,7 +411,6 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 		</div>
 	</div>
 	<div class="clear"></div>
-	
 	<a href="http://soflyy.com/" target="_blank" class="wpallimport-created-by"><?php _e('Created by', 'wp_all_import_plugin'); ?> <span></span></a>
 
 </form>
